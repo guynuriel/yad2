@@ -1,0 +1,463 @@
+.header-step{
+    height: 60px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgb(12 0 51 / 10%);
+}
+
+.header-step div{
+    height: 60px;
+
+}
+
+
+.header-step p{
+    color: #acacac;
+    font-size: 24px;
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+}
+
+.step {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgb(12 0 51 / 10%);
+    text-decoration: none;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+}
+.step .header{
+    width:100%;
+    margin:20px 0;
+    font-size: 24px;
+
+}
+.icheck-wrapper{
+    display: none;
+    background-color:#d6f2e4; 
+    margin:auto 10px ;
+    padding:5px;
+    border-radius:50px;
+}
+
+.icheck-wrapper i{
+    color: #0fca80;
+    font-size:20px
+}
+
+.num{
+    height: 24px;
+    width: 24px;
+    line-height: 25px;
+    margin: auto 15px auto 10px;
+    border-radius: 50px;
+    color: #0fca80;
+    text-align: center;
+    border: 2px solid #0fca80;
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    
+}
+.num > span{
+    line-height: 21px;
+    padding-bottom: 5px;
+}
+.next-lv-btn{
+    margin-right: auto;
+    font-size: 14px;
+    background-color: #fff;
+    color: #ff7100;
+    border: 1px solid #ff7100;
+    text-align: center;
+    margin-left: 5%;
+    box-sizing: border-box;
+    height: 35px;
+    width: 155px;
+    border-radius: 17.5px;
+    line-height: 32px;
+}
+.back-lv-btn{
+    margin-left: auto;
+    font-size: 14px;
+    color: #363636;
+    margin: 0 5% 0 0;
+    text-align: center;
+    box-sizing: border-box;
+    height: 35px;
+    width: 90px;
+    border: 1px solid #ccc;
+    border-radius: 17.5px;
+    background-color: #fff;
+    line-height: 32px;
+}
+
+.next-lv-btn:hover, .back-lv-btn:hover{
+    color: white;
+    background-color: #ff7100;
+    cursor: pointer;
+}
+
+
+
+#step1 .select_wrapper{
+    padding-top: 8px;
+    width:140px;
+    height:130px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    background-color:white;
+    margin: auto;
+    
+}
+
+#step1 .select_wrapper .image-wrapper{
+    width: 100%; 
+    background-color:white;
+    justify-content:center;
+
+
+}
+#step1 .select_wrapper p{font-weight: bolder;}
+
+#step1 .select_wrapper .image-wrapper svg{
+    margin-top: 10px;
+}
+
+
+#step1 .select_wrapper:hover{
+    border:1px solid #ff7100!important;
+    cursor: pointer;
+}
+
+#step1 .select_wrapper:hover > .image-wrapper svg{
+    filter: invert(49%) sepia(63%) saturate(3001%) hue-rotate(0deg) brightness(100%) contrast(101%);
+}
+#step1 .select_wrapper:hover > p{
+    color: #ff7100;
+}
+
+
+#step2 .inputs-wrapper{
+width: 260px;
+margin: 45px;
+
+}
+#step2 label{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+#step2 .input{
+    width: 100%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    height: 40px;
+    background-color: #fff;
+    font-size: 14px;
+    text-indent: 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+
+}
+
+#step2 .input:focus-visible{
+    border: 3px solid black;
+}
+
+/* ///////////      -------------    3   ----------------      /////////////////// */
+
+#step3 .inputs-wrapper{
+    width: 200px;
+    margin: 45px;
+    
+}
+#step3 label{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+#step3 .input{
+    width: 100%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    height: 40px;
+    background-color: #fff;
+    font-size: 14px;
+    text-indent: 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+
+}
+
+#step3 .input:focus-visible{
+    border: 3px solid black;
+}
+#step3 .switcher-item{
+    position: relative;
+    display: inline-block;
+    height: 40px;
+    cursor: pointer;
+    width: 25%;
+    margin-bottom: 20px;
+}
+#step3 .checkbox-item {
+    position: relative;
+    display: inline-block;
+    height: 36px;
+    cursor: pointer;
+    width: 22%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+#step3 .switcher-item input,#step3 .checkbox-item input{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+#step3 .switcher-item input:checked ~ .item,#step3 .checkbox-item input:checked ~ .item{
+    color: #363636;
+    background: #eee;
+}
+#step3 .switcher-item .item{
+    color: #000;
+    background: #fff;
+    display: inline-block;
+    height: calc(100% - 2px);
+    width: 100%;
+    border: 1px solid #acacac;
+    border-left: 0 none;
+    line-height: 35px;
+    text-align: center;
+}
+#step3 .checkbox-item .item{
+    color: #000;
+    background: #fff;
+    display: inline-block;
+    height: calc(100% - 2px);
+    width: 100%;
+    border: 1px solid #acacac;
+    line-height: 32px;
+    text-align: right;
+    border-radius: 17px;
+    padding-right: 15px;
+    font-size: 14px;
+}
+
+#step3 .switcher-item .last-item{
+    border-left: 1px solid #acacac;
+    border-radius: 5px 0 0 5px ;
+
+}
+#step3 .switcher-item .first-item{
+
+    border-radius: 0 5px 5px 0;
+
+}
+
+
+/* ///////////      -------------    4   ----------------      /////////////////// */
+
+#step4 .inputs-wrapper{
+    width: 200px;
+    margin: 45px;
+    
+}
+#step4 label{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+#step4 .input{
+    width: 100%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    height: 40px;
+    background-color: #fff;
+    font-size: 14px;
+    text-indent: 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+
+}
+
+#step4 .input:focus-visible{
+    border: 3px solid black;
+}
+
+
+
+/* ///////////      -------------    5   ----------------      /////////////////// */
+
+
+
+.img-upload-wrap{
+    position: relative; 
+    border: 1px dashed #9d9d9d; 
+    width: 240px; 
+    height: 200px; 
+    line-height: 200px; 
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.img-upload-wrap input[type=file]{
+    opacity: 0.0; 
+    position: absolute; 
+    top: 0; left: 0; bottom: 0; right: 0; 
+    width: 100%; 
+    height:100%;
+}
+.img-upload-wrap .icon-wrapper{
+    width: 220px;
+    height: 180px;
+    text-align: center;
+    display: flex;
+    position: absolute;
+    top: calc(50% - (180px / 2));
+    left: calc(50% - (220px / 2));
+}
+.img-upload-wrap .image_preview{
+    width: 102%;
+    height: 102%;
+    text-align: center;
+    position: absolute;
+    top: calc(50% - (102% / 2));
+    left: calc(50% - (102% / 2));
+    display: none;
+    border-radius: 5px;
+}
+.img-upload-wrap .main_image_preview{
+    width: 220px;
+    height: 170px;
+    text-align: center;
+    position: absolute;
+    top: calc(50% - (160px/ 2));
+    left: calc(50% - (220px / 2));
+    display: none;
+    border-radius: 5px;
+}
+.img-upload-wrap .main-icon-wrapper{
+    width: 220px;
+    height: 170px;
+    text-align: center;
+    display: flex;
+    position: absolute;
+    top: calc(50% - (160px / 2));
+    left: calc(50% - (220px / 2));
+    background-color: white;
+    border-radius:5px;
+    border: none;
+}
+.img-upload-wrap .icon-wrapper i{
+    top: 45px;
+    position: absolute;
+    margin: auto;
+    color: #a5a5a6;
+    height: 180px;
+    width: 220px;
+    font-size: 50px;
+}
+
+.img-upload-wrap .icon-wrapper div{
+    font-size: 12px;
+    width: 100%;
+    vertical-align: middle;
+    align-self: center;
+    margin-top: 40px;
+    color: #a5a5a6;
+}
+ 
+
+.img-upload-wrap .imgRemove{
+    position: absolute;
+    top: 25px;
+    right: 13px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: none;
+    z-index: 9999;
+}
+.img-upload-wrap .imgRemove i{
+    position: absolute;
+    font-size: 16px;
+    background-color: gainsboro;
+    padding: 7px;
+    border-radius: 20px;
+    left: 0px;
+}
+.img-upload-wrap .imgRemove::after{
+    color: #fff;
+    font-weight: 900;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+
+/* ///////////      -------------    6   ----------------      /////////////////// */
+
+#step6 .inputs-wrapper{
+    width: 600px;
+    margin: 45px;
+    
+}
+#step6 .input-wrapper{
+    display: block;
+    width: 40%;
+    padding-left: 10px;
+    
+}
+#step6 .input-wrapper-last{
+    display: block;
+    width: 20%;
+    position: relative;
+    
+}
+#step6 label{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+#step6 .input{
+    width: 100%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    height: 40px;
+    background-color: #fff;
+    font-size: 14px;
+    text-indent: 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+
+}
+
+#step6 .input:focus-visible{
+    border: 3px solid black;
+}
+#step6 #contact2{
+    display: none;
+
+}
+#step6 #remove_contact2{ 
+    position: absolute;
+    left: -55px;
+    top: 30px;
+}
+#step6 #remove_contact2 i{
+    margin: auto;
+    margin-left: 5px;
+}
+
+#step6 #remove_contact2:hover, #step6 #add_contact2:hover,#step6 #remove_contact2:hover i,#step6 #add_contact2:hover i{ 
+    color: #ff7100;
+    cursor: pointer;
+}
