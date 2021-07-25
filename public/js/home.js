@@ -1,6 +1,8 @@
-document.addEventListener("DOMContentLoaded", function(){
+$( document ).ready(function() {
+    // Handler for .ready() called.
+
     // make it as accordion for smaller screens
-    if (window.innerWidth > 992) {
+    if (window.innerWidth > 1400) {
     
         document.querySelectorAll('.navbar .nav-item').forEach(function(everyitem){
     

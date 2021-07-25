@@ -274,16 +274,19 @@
     </div>
 </nav>
 
+{{-- <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script> --}}
+
 <nav id="mobile_nav">
-    <div class="flex">
+    <div style="background-color: #ff7100" class="flex">
         <span class="ml-auto my-auto click sidenav_toggle">
             <i class="fas fa-bars f24 p-2 mr-2"></i>
         </span>
-        <img class="mr-auto" width="100" src="{{ asset('images/logos/yad2Logo.png') }}" alt="logo">
+        <img class="ml-auto" width="100" src="{{ asset('images/logos/yad2Logo.png') }}" alt="logo">
     </div>
 
     <div class="sidenav_toggle" id="sidenav_wrapper">
-        <div id="sidenav">
+        <div onclick="event.stopPropagation()" id="sidenav">
             <div class="sidenav_toggle" id="close_menu">x</div>
             <div class="section1">
                 <div class="row1 center_content">
@@ -350,16 +353,134 @@
                 <p class="p"><i class="fas fa-graduation-cap"></i> לימודים</p>
             </div>
             <div class="section3">
-                <p style="color: #999" class="f16">חיפוש מהיר באתר</p>
-                <p class="p"><i class="fas fa-home"></i> נדל"ן</p>
-                <p class="p"><i class="fas fa-car-side"></i> רכב</p>
-                <p class="p"><i class="fas fa-couch"></i> יש שנייה</p>
-                <p class="p"><i class="fas fa-briefcase"></i> עסקים למכירה</p>
-                <p class="p"><i class="fas fa-book-reader"></i> דרושים IL</p>
-                <p class="p"><i class="fas fa-paw"></i> חיות מחמד</p>
-                <p class="p"><i class="fas fa-umbrella-beach"></i> תיירות ונופש</p>
-                <p class="p"><i class="fas fa-graduation-cap"></i> לימודים</p>
+                <p style="color: #999" class="f16 mb-0 mt-3 mr-3">ניווט לפי קטגוריות</p>
+                <ul class="p-0">
+                    <li onclick="mobile_menu_dd(1)" class="f16 color1 triger" >נדל"ן <i id="mobile_menu_icon1" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                    <hr class="m-0">
+                    <li id="mobile_menu_dd1" class="displaynone mobile_menu_dd p-0">
+                        <ul class="pr-0">
+                            <li>דירות למכירה</li>
+                            <li>דירות להשכרה</li>
+                            <li>דירות שותפים</li>
+                            <li>נדל"ן מסחרי</li>
+                            <li>חיפוש נכסים על גבי מפה</li>
+                            <li>כונס נכסים</li>
+                            <li>מדד הנדל"ן</li>
+                            <li>יד1 דירות חדשות</li>
+                            <li>הערכת שווי הנכס</li>
+                            <li>משרדי תיווך בישראל</li>
+                        </ul>    
+                    </li> 
+                    <li onclick="mobile_menu_dd(2)" class="f16 color1 triger" >רכב <i id="mobile_menu_icon2" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                    <hr class="m-0">
+                    <li id="mobile_menu_dd2" class="displaynone mobile_menu_dd p-0">
+                        <ul class="pr-0">
+                            <li>פרטי</li>
+                            <li>מסחרי</li>
+                            <li>ג'יפים</li>
+                            <li>אופנועים</li>
+                            <li>קטנועים</li>
+                            <li>אביזרים</li>
+                            <li>משאיות</li>
+                            <li>כלי שייט</li>
+                            <li>קטלוג רכבים</li>
+                            <li>מחירון רכב</li>
+                            <li>מרכזים וכינוס</li>
+                            <li>מימון רכב</li>
+                        </ul>    
+                    </li> 
+                    <li onclick="mobile_menu_dd(3)" class="f16 color1 triger" >יד שנייה <i id="mobile_menu_icon3" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                    <hr class="m-0">
+                    <li id="mobile_menu_dd3" class="displaynone mobile_menu_dd p-0">
+                        <ul class="pr-0">
+                            <li>כל המוצרים</li>
+                            <li>מוצרי חשמל</li>
+                            <li>ריהוט</li>
+                            <li>עסקים למכירה</li>
+                            <li>ספורט</li>
+                            <li>סלולרי</li>
+                            <li>לתינוק ולילד</li>
+                            <li>הכל בחינם!</li>
+                            <li>קונסולות משחק</li>
+                            <li>מחשבים וציוד נלווה</li>
+                            <li>לגינה</li>
+                            <li>אופנה וטיפוח</li>
+                        </ul>    
+                    </li> 
+                    <li onclick="mobile_menu_dd(4)" class="f16 color1 triger" >חיות מחמד <i id="mobile_menu_icon4" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                    <hr class="m-0">
+                    <li id="mobile_menu_dd4" class="displaynone mobile_menu_dd p-0">
+                        <ul class="pr-0">
+                            <li>כלבים</li>
+                            <li>חתולים</li>
+                            <li>תוכים ובעלי כנף</li>
+                            <li>דגים</li>
+                            <li>זוחלים</li>
+                            <li>מכרסמים</li>
+                            <li>סוסים</li>
+                            <li>תרנגולים</li>
+                            <li>חיות משק</li>
+                            <li>חמוסים</li>
+                            <li>כל בעלי החיים</li>
+                        </ul>    
+                    </li> 
+                    <li onclick="mobile_menu_dd(5)" class="f16 color1 triger" >בעלי מקצוע <i id="mobile_menu_icon5" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                    <hr class="m-0">
+                    <li id="mobile_menu_dd5" class="displaynone mobile_menu_dd p-0">
+                        <ul class="pr-0">
+                            <li>מכוני בדיקה ורישוי לרכב</li>
+                            <li>רחיצת רכב</li>
+                            <li>שמאי מקרקעין</li>
+                            <li>חומרי בניין</li>
+                            <li>אינסטלטורים</li>
+                            <li>חשמלאים</li>
+                            <li>שיפוצים</li>
+                            <li>הובלות</li>
+                            <li>רהיטים</li>
+                            <li>חברות ניקיון ואחזקה</li>
+                            <li>לכל בעלי המקצוע</li>
+                        </ul>    
+                    </li> 
+                    <li class="f16 color1 triger" >תיירות ונופש</li>
+                    <hr class="m-0">
+                    <li class="f16 color1 triger" >לימודים</li>
+                    <hr class="m-0">
+                    <li class="f16 color1 triger" >מגזין יד2</li>
+                </ul>
+                     
+            </div>
+            <div class="section4">
+                <div class="flex">
+                    <div class="m-auto text-center">
+                        <i class="fas fa-pencil-alt"></i>
+                        <p>תקנון</p>
+                    </div>
+                    <div class="m-auto text-center">
+                        <i class="fas fa-key"></i>
+                        <p>פרטיות ותנאים</p>                    </div>
+                    <div class="m-auto text-center">
+                        <i style="color:#fff; background-color: #002f75 !important" class="fas fa-child"></i>
+                        <p>נגישות</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="m-auto text-center">
+                        <i class="fas fa-question"></i>
+                        <p>מענה לשאלות</p>
+                    </div>
+                    <div class="m-auto text-center">
+                        <i class="fas fa-mobile-alt"></i>
+                        <p>יצירת קשר</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </nav>
+
+<script>
+    function mobile_menu_dd(num){
+        $("#mobile_menu_dd"+num).toggle('slideDown') ;
+        $("#mobile_menu_icon"+num).toggleClass('fa-chevron-up');
+    }
+</script>
