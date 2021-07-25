@@ -230,29 +230,40 @@ position: relative;
     border-radius: 2px;
 }
 
+/* mobile feed */
+.mobile_ad_wrapper{
+    color: inherit; 
+    text-decoration: inherit;
+}
+.mobile_ad_wrapper:hover{
+    color: inherit; 
+    text-decoration: inherit;
+}
+.mobile_ad{
+    position: relative;
+    width: 100% ; 
+    background-color: #fdf9c5; 
+    box-shadow: 0 1px 6px 1px rgb(0 0 0 / 16%); 
+    height: 150px; 
+    display: flex;
+}
 
-
-@media screen and (max-width:880px){
-    .feed_items, .feed_items .single-ad-wrapper{
-        width: 100%;
-    }
-    .right_col{
-        width: 40%;
-    }
-    .feed_image_container{
-        width: 30%;
-    }
-    .addresses{
-        width: 70%;
-    }
-    .middle_col{
-        width: 30%
-    }
-    .min-ad-wrapper .left_col{
-            display: none;
+@media screen and (min-width:880px){
+    #mobile_feed{
+       display: none;
     }
 
 }
+@media screen and (max-width:880px){
+    .feed_items{
+        width: 100%;
+    }
+    #desktop_feed{
+        display: none;
+    }
+    
+}
+
 
 /* //////////           חיפוש          /////////////// */
 

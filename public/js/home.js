@@ -31,6 +31,11 @@ $( document ).ready(function() {
         });
     
     }
+    if($(window).width() > 880){
+        $('#mobile_feed').empty()
+    }else{
+        $('#desktop_feed').empty()
+    }
 }); 
 
 

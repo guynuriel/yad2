@@ -1,5 +1,5 @@
 
-    <section class="flex mb-5">
+    <section id="desktop_feed" class="flex mb-5">
         <div class="feed_items">
 
             @foreach ($ads as $ad)
@@ -248,4 +248,67 @@
 
 
 
+    </section>
+
+
+    {{------------------ mobile -------------}}
+
+
+    <section id="mobile_feed" class="flex mb-5">
+        <div class="feed_items">
+            @foreach ($ads as $ad )
+
+                <a class="mobile_ad_wrapper" href="/ads/{{ $ad->id }}">
+                    <div class="mobile_ad">
+                        <div style="position: absolute; top: 10px; left: 10px;" >
+                            <p class="color2">
+                                @if ( strtotime(date('d.m.Y')) === strtotime(date('d.m.y', strtotime( $ad->updated_at ))))
+                                    עודכן היום
+                                    @else                                    
+                                    {{ date('d/m/y', strtotime( $ad->updated_at )) }}
+                                @endif
+                            </p>
+                        </div>
+                        <div style="width: 100%" class=" flex">
+                            <div class="center_content p-3" style="width: 200px;">
+                                <img style="width: 100%;height:auto" src="{{ (is_array( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
+                            </div>
+                            <div style="width: calc(100% - 200px);">
+                                <div>
+                                    <p class="mb-0 mt-3">{{ $ad->price }} ₪</p>
+                                    <span class="asset_address f16">
+                                        {{ $ad->address_name }}
+                                        {{ $ad->address_num }}
+                                    </span>
+
+                                </div>
+                                <div>
+                                    <p class="mb-0">
+                                        <span class="asset_type f14">{{ $ad->asset_type }}</span>, <span
+                                            class="asset_neighborhood f14">{{ $ad->neighborhood }}</span>, <span
+                                            class="asset_city f14">{{ $ad->city }}
+                                        </span>
+                                    </p>
+                                </div>
+                                <hr class="my-1 mx-3">
+                                <div style="width:100%" class="flex">
+                                    <div style="width: 33%" >
+                                        <div class="text-center m-0">{{ $ad->rooms }}</div>
+                                        <div class="text-center f14 ">חדרים</div>
+                                    </div>
+                                    <div style="width: 33%">
+                                        <div class="text-center m-0">{{ $ad->floor }}</div>
+                                        <div class="text-center f14">קומה</div>
+                                    </div>
+                                    <div style="width: 33%">
+                                        <div class="text-center m-0">{{ $ad->total_asset_size }}</div>
+                                        <div class="text-center f14">מ"ר</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
     </section>
