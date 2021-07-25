@@ -124,6 +124,14 @@ li a{
 	top: 5px;
 	right: 20px;
 }
+#sidenav #logout_mobile_nav{
+	cursor: pointer;
+	font-size: 14px;
+	color: #999999;
+	position: absolute;
+	top: 25px;
+	left: 20px;
+}
 .row1 #user_connected .user{
 	color: #ff7100;
 	background-color:#fff1e5;

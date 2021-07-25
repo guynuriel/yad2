@@ -1,4 +1,3 @@
-
 <nav id="main-nav" class="navbar navbar-expand-lg navbar-light " style="direction: rtl;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -209,7 +208,8 @@
                     <div class="p-3">
                         <h3 class="text-center">מודעות שאהבתי</h3>
                         <p class="text-center">הרשימה שלך עדיים ריקה אפשר<br> להוסיף מודעות לרשימה בלחיצה על
-                            <br>הסימן בפינה הימנית של כל מודעה</p>
+                            <br>הסימן בפינה הימנית של כל מודעה
+                        </p>
                     </div>
                 </div>
             </li>
@@ -262,12 +262,12 @@
                 <a class="nav-link" href="#"><i class="far fa-chart-line"></i> מדד נדל"ן</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><img height="15" src="{{ asset('images/logos/yad1_logo.svg') }}"
-                        alt=""> יד1 דירות חדשות</a>
+                <a class="nav-link" href="#"><img height="15" src="{{ asset('images/logos/yad1_logo.svg') }}" alt="">
+                    יד1 דירות חדשות</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><img height="15"
-                        src="{{ asset('images/logos/yadata_logo_black.svg') }}" alt=""> הערכת שווי נכס</a>
+                <a class="nav-link" href="#"><img height="15" src="{{ asset('images/logos/yadata_logo_black.svg') }}"
+                        alt=""> הערכת שווי נכס</a>
             </li>
 
         </ul>
@@ -276,35 +276,43 @@
 
 <nav id="mobile_nav">
     <div class="flex">
-        <span  class="ml-auto my-auto click sidenav_toggle">
+        <span class="ml-auto my-auto click sidenav_toggle">
             <i class="fas fa-bars f24 p-2 mr-2"></i>
         </span>
         <img class="mr-auto" width="100" src="{{ asset('images/logos/yad2Logo.png') }}" alt="logo">
     </div>
 
-    <div class="sidenav_toggle"  id="sidenav_wrapper">
+    <div class="sidenav_toggle" id="sidenav_wrapper">
         <div id="sidenav">
-            <div class="sidenav_toggle" id="close_menu" >x</div>
+            <div class="sidenav_toggle" id="close_menu">x</div>
             <div class="section1">
                 <div class="row1 center_content">
-                @if (Auth::guest())
-                    <div class="center_content p-4" id="user_disconnected">
-                        <div>
-                            <div class=" w100 center_content" >
-                                <i style="padding:10px !important" class="far fa-user f40"></i>
+                    @if (Auth::guest())
+                        <div class="center_content p-4" id="user_disconnected">
+                            <div>
+                                <div class=" w100 center_content">
+                                    <i style="padding:10px !important" class="far fa-user f40"></i>
+                                </div>
+                                <p class="m-0 w100 f18 mt-1 color1">התחברות</p>
                             </div>
-                            <p class="m-0 w100 f18 mt-1 color1">התחברות</p>
                         </div>
-                    </div>
-                @else
-                    <div class="center_content p-4" id="user_connected">
-                        <div class="user f30" >{{Auth::user()->name[3]}}</div>
-                        <div class="mr-2">
-                            <p class="m-0 color1" ><strong>{{Auth::user()->name}}</strong></p>
-                            <p class="m-0 f12 color1">לאזור האישי</p>
+                    @else
+                        <a id="logout_mobile_nav" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                            התנתקות
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                        <div class="center_content p-4" id="user_connected">
+                            <div class="user f30">{{ Auth::user()->name[3] }}</div>
+                            <div class="mr-2">
+                                <p class="m-0 color1"><strong>{{ Auth::user()->name }}</strong></p>
+                                <p class="m-0 f12 color1">לאזור האישי</p>
+                            </div>
                         </div>
-                    </div>
-                @endif 
+                    @endif
                 </div>
                 <div class="row2 center_content ">
                     <div class="m-auto new-post-btn">
@@ -342,9 +350,16 @@
                 <p class="p"><i class="fas fa-graduation-cap"></i> לימודים</p>
             </div>
             <div class="section3">
-
+                <p style="color: #999" class="f16">חיפוש מהיר באתר</p>
+                <p class="p"><i class="fas fa-home"></i> נדל"ן</p>
+                <p class="p"><i class="fas fa-car-side"></i> רכב</p>
+                <p class="p"><i class="fas fa-couch"></i> יש שנייה</p>
+                <p class="p"><i class="fas fa-briefcase"></i> עסקים למכירה</p>
+                <p class="p"><i class="fas fa-book-reader"></i> דרושים IL</p>
+                <p class="p"><i class="fas fa-paw"></i> חיות מחמד</p>
+                <p class="p"><i class="fas fa-umbrella-beach"></i> תיירות ונופש</p>
+                <p class="p"><i class="fas fa-graduation-cap"></i> לימודים</p>
             </div>
         </div>
     </div>
 </nav>
-
