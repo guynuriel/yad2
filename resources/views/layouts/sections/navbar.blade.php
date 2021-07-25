@@ -282,7 +282,9 @@
         <span class="ml-auto my-auto click sidenav_toggle">
             <i class="fas fa-bars f24 p-2 mr-2"></i>
         </span>
-        <img class="ml-auto" width="100" src="{{ asset('images/logos/yad2Logo.png') }}" alt="logo">
+        <a class="ml-auto" href="/">
+            <img width="100" src="{{ asset('images/logos/yad2Logo.png') }}" alt="logo">
+        </a>
     </div>
 
     <div class="sidenav_toggle" id="sidenav_wrapper">

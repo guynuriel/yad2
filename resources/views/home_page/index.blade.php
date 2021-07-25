@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.yad2')
 
 @section('content')
     @include('home_page.sections.search')

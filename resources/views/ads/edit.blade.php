@@ -1,5 +1,5 @@
 
-@extends('layouts.main')
+@extends('layouts.yad2')
 
 @section('content')
 

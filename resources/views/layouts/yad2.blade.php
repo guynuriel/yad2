@@ -11,8 +11,9 @@
     <title>{{ env('APP_NAME') }}</title>
 
     <!-- Scripts -->
-
-    <script src="{{ asset('js/home.js') }}" defer></script>
+    @if ($_SERVER['REQUEST_URI'] === '/' )
+        <script src="{{ asset('js/home.js') }}" defer></script>
+    @endif
 
 
     <!-- Fonts -->
@@ -22,13 +23,19 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home_page.css') }}" rel="stylesheet">
+
+    {{-- / --}}
+    @if ($_SERVER['REQUEST_URI'] === '/' )
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        <link href="{{ asset('css/home_page.css') }}" rel="stylesheet">
+    @elseif ($_SERVER['REQUEST_URI'] === '/ads/create')    
+        <link href="{{ asset('css/create.css') }}" rel="stylesheet">
+    @endif
 
 </head>
 
@@ -47,24 +54,34 @@
     </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     
+    
+    @if ($_SERVER['REQUEST_URI'] === '/' )
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-
     <script type="text/javascript" src="{{ asset('js/home_page/search.js') }}" defer></script>
     <script type="text/javascript" type="module" src="{{ asset('js/home_page/swiper.js') }}" defer></script>
+        
+
+
+    @elseif ($_SERVER['REQUEST_URI'] === '/ads/create')    
+    <script src="{{ asset('js/create.js') }}" defer></script>
+    <script src="{{ asset('js/cities_addresses_data/addressesArray.js') }}" defer></script>
+    @endif
+
+
     <script type="text/javascript" src="{{ asset('js/cities_addresses_data/citiesArray.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/cities_addresses_data/logic.js') }}" defer></script>
     
     <script>
-
-        // mobile sidenav toggle func
         $(".sidenav_toggle" ).click(function(e){  
             e.stopPropagation();
             $( "#sidenav_wrapper" ).toggle( "slide" );
         })
+    </script>
 
 
+@if ($_SERVER['REQUEST_URI'] === '/' )
+    <script>   
         // popupimages funcs
         function get_images(e){
             e.stopPropagation();
@@ -115,6 +132,7 @@
 
         });
     </script>
+@endif
 
 </body>
 
