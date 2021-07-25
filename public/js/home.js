@@ -4,9 +4,9 @@ $( document ).ready(function() {
     // make it as accordion for smaller screens
     if (window.innerWidth > 1400) {
     
-        document.querySelectorAll('.navbar .nav-item').forEach(function(everyitem){
+        document.querySelectorAll('.navbar .nav-item').forEach(function(nav_dd){
     
-            everyitem.addEventListener('mouseover', function(e){
+            nav_dd.addEventListener('mouseover', function(e){
     
                 let el_link = this.querySelector('a[data-bs-toggle]');
     
@@ -17,7 +17,7 @@ $( document ).ready(function() {
                 }
     
             });
-            everyitem.addEventListener('mouseleave', function(e){
+            nav_dd.addEventListener('mouseleave', function(e){
                 let el_link = this.querySelector('a[data-bs-toggle]');
     
                 if(el_link != null){
