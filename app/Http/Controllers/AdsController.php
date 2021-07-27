@@ -21,12 +21,20 @@ class AdsController extends Controller
     public function index(Request $request)
     {
         
-        $ads = Ads::latest()->get();
-       
+        $ads = Ads::latest()->paginate(10);  
+        
+        // Infinite Scroll Pagination
+        if($request->ajax()){
+            $view = view('home_page.sections.feed',compact('ads'))->render();
+            return response()->json(['html'=>$view]);
+        } 
+        
+        // search progress
         if(request('search')){
             $ads = $this->search_form($ads,request('search'));           
         }
             
+        // normal progress
         $query = $request->all();
         return view('home_page.index',['ads'=>$ads,'query'=>$query]);
 

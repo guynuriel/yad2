@@ -32,7 +32,6 @@
     @if ($_SERVER['REQUEST_URI'] === '/' )
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-        <link href="{{ asset('css/home_page.css') }}" rel="stylesheet">
     @elseif ($_SERVER['REQUEST_URI'] === '/ads/create')    
         <link href="{{ asset('css/create.css') }}" rel="stylesheet">
     @endif
@@ -45,6 +44,7 @@
     
     @include('layouts.sections.navbar')
     @yield('content')
+    
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -82,7 +82,52 @@
 
 @if ($_SERVER['REQUEST_URI'] === '/' )
     <script>   
-        // popupimages funcs
+
+        // -------   pagination
+
+        function infiniteScrollPagination (page){
+
+            $.ajax({
+                url: '?page=' + page,
+                type: 'GET',
+                beforeSend: function(){
+                    $('#ajax-load').show();
+                },
+                success: function(ads){
+                    if(ads.html == ""){
+                        $('#ajax-load').html("אין מודעות נוספות");
+                        return;
+                    }
+                    setTimeout(function() { 
+                        $('#ajax-load').hide();
+                    }, 2000);
+                    $('.feed_items').append(ads.html);
+                    if($(window).width() > 880){
+                        $('.mobile_ad_wrapper').remove()
+                    }else{
+                        $('.single-ad-wrapper').remove()
+                    }
+
+                },
+                error:function(jqXHR){
+                    alert("טעינת מודעות נוספות נכשלה")
+                },
+                complete: function(){
+                    
+                }
+            })
+        }
+
+        let page = 1;
+        $(window).scroll(function(){
+            if($(window).scrollTop() + $(window).height() == $(document).height()){
+                page++;
+                infiniteScrollPagination(page);
+               
+            }
+        })
+
+        // -------- popupimages funcs
         function get_images(e){
             e.stopPropagation();
             let id = e.target.getAttribute('ad_id')

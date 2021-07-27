@@ -249,7 +249,7 @@ position: relative;
 }
 
 @media screen and (min-width:880px){
-    #mobile_feed{
+    .mobile_ad_wrapper{
        display: none;
     }
 
@@ -258,7 +258,7 @@ position: relative;
     .feed_items{
         width: 100%;
     }
-    #desktop_feed{
+    .single-ad-wrapper{
         display: none;
     }
     

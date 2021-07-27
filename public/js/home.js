@@ -32,9 +32,11 @@ $( document ).ready(function() {
     
     }
     if($(window).width() > 880){
-        $('#mobile_feed').empty()
+        $('.mobile_ad_wrapper').hide()
+        $('.mobile_ad_wrapper').remove()
     }else{
-        $('#desktop_feed').empty()
+        $('.single-ad-wrapper').hide()
+        $('.single-ad-wrapper').remove()
     }
 }); 
 
