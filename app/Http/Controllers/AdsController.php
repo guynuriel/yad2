@@ -21,7 +21,7 @@ class AdsController extends Controller
     public function index(Request $request)
     {
         
-        $ads = Ads::latest()->paginate(10);  
+        $ads = Ads::latest()->paginate(8);  
         
         // Infinite Scroll Pagination
         if($request->ajax()){
