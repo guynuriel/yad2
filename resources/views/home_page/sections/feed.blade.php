@@ -48,7 +48,7 @@
                         <div class="left_col">
 
                             <div class="text-left">
-                                <a class="newtab_link color2" href="/ads/{{ $ad->id }}">
+                                <a onclick="event.stopPropagation()" class="newtab_link color2" href="/ads/{{ $ad->id }}">
                                     <span>פתיחה בטאב חדש</span>
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
@@ -129,8 +129,8 @@
                                     <p class="mb-0">{{ $ad->price }} ₪</p>
                                     <p class="color2">עודכן היום</p>
                                 </div>
-                                <div onclick="show_contact({{ $ad->id }})" class="contact-seller-container">
-                                    <div class="contact-seller-btn click text-white text-center">
+                                <div class="contact-seller-container">
+                                    <div name="{{ $ad->id }}" class="contact-seller-btn click text-white text-center">
                                         <i class="fas fa-phone-alt text-white"></i> הצגת מספר טלפון
                                     </div>
                                     <div id="contact{{ $ad->id }}" class="contacts_dtl">

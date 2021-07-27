@@ -47,3 +47,10 @@ function toggle_ad_on_main__page(id){
     $('#min'+id).toggle()
 
 }
+
+$('.contact-seller-btn').click (function(e){
+    e.stopPropagation();
+    let id = e.target.attributes.name.value
+    $('#contact'+id).toggle('slide');
+})
+
