@@ -24,13 +24,13 @@
 .second-nav-ul{
 	height: 50px;
 }
-ul li{
+.navbar-nav li{
 	display: flex;
 	min-width: 80px;
     padding-left: 10px;
     padding-right: 10px;
 }
-li a{
+.navbar-nav li a{
 	margin: auto;
 }
 #second-nav{
