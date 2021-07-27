@@ -11,9 +11,9 @@
            
         </div>
     </section>
-    <div id="ajax-load" class="text-center m-4" style="display: none" >
-        <p>
-            Loading More Post
+    <div style="height: 50px" class="text-center m-4"  >
+        <p id="ajax-load" style="display: none">
+            טוען עוד מודעות
             <img width="50px" src="{{ asset('images/web-imgs/loading.gif') }}">
         </p>
     </div>
