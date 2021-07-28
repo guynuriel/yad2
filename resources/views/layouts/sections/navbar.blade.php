@@ -214,14 +214,38 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link" href="{{ route('connect') }}" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="far fa-user"></i> <span class="nav_text">התחברות</span>
-                </a>
+                @if (Auth::guest())
+                    <a class="nav-link click" id="navbarDropdown" data-toggle="modal" data-target="#loginModal">
+                        <i class="far fa-user"></i> <span class="nav_text">התחברות</span>
+                    </a>
+                @else
+                    
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    <div class="center_content p-4" >
+                        <div style="color: #ff7100;
+                        background-color:#fff1e5;
+                        padding: 10px;
+                        line-height: 25px;
+                        border-radius: 30px;" class="user f30">{{ Auth::user()->name[3] }}</div>
+                        <div class="mr-2">
+                            <p class="m-0 color1"><strong>{{ Auth::user()->name }}</strong></p>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <div>
                         <a class="dropdown-item" href="#">השוואת מחירים</a>
                         <a class="dropdown-item" href="#">חיפושים אחרונים</a>
+                        @if (Auth::user())
+                        <a class="dropdown-item text-center"  href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        התנתקות
+                        </a>
+                        @endif
                     </div>
                 </div>
             </li>
@@ -357,7 +381,8 @@
             <div class="section3">
                 <p style="color: #999" class="f16 mb-0 mt-3 mr-3">ניווט לפי קטגוריות</p>
                 <ul class="p-0">
-                    <li onclick="mobile_menu_dd(1)" class="f16 color1 triger" >נדל"ן <i id="mobile_menu_icon1" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                    <li onclick="mobile_menu_dd(1)" class="f16 color1 triger">נדל"ן <i id="mobile_menu_icon1"
+                            class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
                     <hr class="m-0">
                     <li id="mobile_menu_dd1" class="displaynone mobile_menu_dd p-0">
                         <ul class="pr-0">
@@ -371,9 +396,10 @@
                             <li>יד1 דירות חדשות</li>
                             <li>הערכת שווי הנכס</li>
                             <li>משרדי תיווך בישראל</li>
-                        </ul>    
-                    </li> 
-                    <li onclick="mobile_menu_dd(2)" class="f16 color1 triger" >רכב <i id="mobile_menu_icon2" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                        </ul>
+                    </li>
+                    <li onclick="mobile_menu_dd(2)" class="f16 color1 triger">רכב <i id="mobile_menu_icon2"
+                            class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
                     <hr class="m-0">
                     <li id="mobile_menu_dd2" class="displaynone mobile_menu_dd p-0">
                         <ul class="pr-0">
@@ -389,9 +415,10 @@
                             <li>מחירון רכב</li>
                             <li>מרכזים וכינוס</li>
                             <li>מימון רכב</li>
-                        </ul>    
-                    </li> 
-                    <li onclick="mobile_menu_dd(3)" class="f16 color1 triger" >יד שנייה <i id="mobile_menu_icon3" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                        </ul>
+                    </li>
+                    <li onclick="mobile_menu_dd(3)" class="f16 color1 triger">יד שנייה <i id="mobile_menu_icon3"
+                            class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
                     <hr class="m-0">
                     <li id="mobile_menu_dd3" class="displaynone mobile_menu_dd p-0">
                         <ul class="pr-0">
@@ -407,9 +434,10 @@
                             <li>מחשבים וציוד נלווה</li>
                             <li>לגינה</li>
                             <li>אופנה וטיפוח</li>
-                        </ul>    
-                    </li> 
-                    <li onclick="mobile_menu_dd(4)" class="f16 color1 triger" >חיות מחמד <i id="mobile_menu_icon4" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                        </ul>
+                    </li>
+                    <li onclick="mobile_menu_dd(4)" class="f16 color1 triger">חיות מחמד <i id="mobile_menu_icon4"
+                            class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
                     <hr class="m-0">
                     <li id="mobile_menu_dd4" class="displaynone mobile_menu_dd p-0">
                         <ul class="pr-0">
@@ -424,9 +452,10 @@
                             <li>חיות משק</li>
                             <li>חמוסים</li>
                             <li>כל בעלי החיים</li>
-                        </ul>    
-                    </li> 
-                    <li onclick="mobile_menu_dd(5)" class="f16 color1 triger" >בעלי מקצוע <i id="mobile_menu_icon5" class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
+                        </ul>
+                    </li>
+                    <li onclick="mobile_menu_dd(5)" class="f16 color1 triger">בעלי מקצוע <i id="mobile_menu_icon5"
+                            class="fas fa-chevron-down h-center mr-auto ml-2 f18"></i></li>
                     <hr class="m-0">
                     <li id="mobile_menu_dd5" class="displaynone mobile_menu_dd p-0">
                         <ul class="pr-0">
@@ -441,15 +470,15 @@
                             <li>רהיטים</li>
                             <li>חברות ניקיון ואחזקה</li>
                             <li>לכל בעלי המקצוע</li>
-                        </ul>    
-                    </li> 
-                    <li class="f16 color1 triger" >תיירות ונופש</li>
+                        </ul>
+                    </li>
+                    <li class="f16 color1 triger">תיירות ונופש</li>
                     <hr class="m-0">
-                    <li class="f16 color1 triger" >לימודים</li>
+                    <li class="f16 color1 triger">לימודים</li>
                     <hr class="m-0">
-                    <li class="f16 color1 triger" >מגזין יד2</li>
+                    <li class="f16 color1 triger">מגזין יד2</li>
                 </ul>
-                     
+
             </div>
             <div class="section4">
                 <div class="flex">
@@ -459,7 +488,8 @@
                     </div>
                     <div class="m-auto text-center">
                         <i class="fas fa-key"></i>
-                        <p>פרטיות ותנאים</p>                    </div>
+                        <p>פרטיות ותנאים</p>
+                    </div>
                     <div class="m-auto text-center">
                         <i style="color:#fff; background-color: #002f75 !important" class="fas fa-child"></i>
                         <p>נגישות</p>
@@ -481,8 +511,8 @@
 </nav>
 
 <script>
-    function mobile_menu_dd(num){
-        $("#mobile_menu_dd"+num).toggle('slideDown') ;
-        $("#mobile_menu_icon"+num).toggleClass('fa-chevron-up');
+    function mobile_menu_dd(num) {
+        $("#mobile_menu_dd" + num).toggle('slideDown');
+        $("#mobile_menu_icon" + num).toggleClass('fa-chevron-up');
     }
 </script>

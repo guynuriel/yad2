@@ -43,4 +43,4 @@ Route::get('/ajax/popupimgs', $ads_controller.'get_images');
 
 Auth::routes();
 
-Route::get('/connect', [App\Http\Controllers\HomeController::class, 'index'])->name('connect');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
