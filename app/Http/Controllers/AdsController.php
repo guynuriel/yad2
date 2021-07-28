@@ -13,7 +13,9 @@ class AdsController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('auth');
+        // $this->middleware('auth'); נותן גישה רק למשתמשים רשומים לקבל את כל התוכן
+        // $this->middleware('guest'); נותן גישה רק למשתמשים לא רשומים לקבל את כל התוכן
+        $this->middleware('auth', ['except'=>['index','show']]);// רק משתמשים מחוברים יוכלו לקבל תוכן מלבד העמודים המפורטים שפתוחים לכולם
     }
     
 

@@ -227,9 +227,10 @@
                     <div class="center_content p-4" >
                         <div style="color: #ff7100;
                         background-color:#fff1e5;
-                        padding: 10px;
+                        width:40px;
+                        height:40px;
                         line-height: 25px;
-                        border-radius: 30px;" class="user f30">{{ Auth::user()->name[3] }}</div>
+                        border-radius: 30px;" class="user center_content f30">{{ Auth::user()->name[0] }}</div>
                         <div class="mr-2">
                             <p class="m-0 color1"><strong>{{ Auth::user()->name }}</strong></p>
                         </div>
@@ -249,12 +250,22 @@
                     </div>
                 </div>
             </li>
+            @if (Auth::user())
             <li class="new-post-btn">
                 <a class="nav-link" href="{{ route('ads.create') }}">+ פרסום מודעה חדשה</a>
             </li>
+            @else
+            
+            <li class="new-post-btn">
+                <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="javascript:void(0)">+ פרסום מודעה חדשה</a>
+            </li>
+            @endif
         </ul>
     </div>
 </nav>
+
+
+
 <!--------------    ------------------>
 <nav id="second-nav" class="navbar navbar-expand-lg navbar-light " style="direction: rtl;">
 
@@ -335,7 +346,7 @@
                             @csrf
                         </form>
                         <div class="center_content p-4" id="user_connected">
-                            <div class="user f30">{{ Auth::user()->name[3] }}</div>
+                            <div class="user f30">{{ Auth::user()->name[0] }}</div>
                             <div class="mr-2">
                                 <p class="m-0 color1"><strong>{{ Auth::user()->name }}</strong></p>
                                 <p class="m-0 f12 color1">לאזור האישי</p>

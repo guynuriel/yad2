@@ -20,7 +20,7 @@ Route::get('/', $ads_controller.'index')->name('index');
 
 
 //עמוד יצירה
-Route::get('/ads/create', $ads_controller.'create')->name('ads.create')->middleware('auth');
+Route::get('/ads/create', $ads_controller.'create')->name('ads.create');
 
 // פקודת יצירת דאטה
 Route::post('/', $ads_controller.'store')->name('ads.store');
@@ -29,13 +29,13 @@ Route::post('/', $ads_controller.'store')->name('ads.store');
 Route::get('/ads/{id}', $ads_controller.'show');
 
 // תצוגת עמוד עריכה
-Route::get('/ads/{id}/edit', $ads_controller.'edit')->middleware('auth');
+Route::get('/ads/{id}/edit', $ads_controller.'edit');
 
 // פקודת עדכון
-Route::put('/ads/{id}', $ads_controller.'update')->middleware('auth');
+Route::put('/ads/{id}', $ads_controller.'update');
 
 // פקודת מחיקה
-Route::delete('/ads/{id}', $ads_controller.'destroy')->middleware('auth');
+Route::delete('/ads/{id}', $ads_controller.'destroy');
 
 // החזרת תמונות לפופ אפ בעמוד הראשי
 Route::get('/ajax/popupimgs', $ads_controller.'get_images');
