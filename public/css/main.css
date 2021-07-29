@@ -95,3 +95,31 @@ html,body{
     overflow-x: hidden;
 
 }
+.popup_wrapper1{
+    z-index: 99999;
+    display: none;
+    width: 100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+}
+.popup_wrapper2{
+    width: 100vw;
+    height:100vh;
+    position:relative;
+    background-color:rgba(0,0,0,0.6)}
+
+.popup_wrapper2 .popup_content{
+    position:absolute; 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.hide_popup_btn{
+    font-weight: bolder;
+    position: absolute;
+    top:20px;
+    left:20px;
+    cursor: pointer;
+    font-size:20px
+}

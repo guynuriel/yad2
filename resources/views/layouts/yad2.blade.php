@@ -45,18 +45,22 @@
     @include('layouts.sections.navbar')
     @yield('content')
     
-    @include('partials.login')
-    @include('partials.register')
-    @yield('scripts')
+   
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
     </script>
+    
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     
+    @include('partials.login')
+    @include('partials.register')
+    @yield('scripts')
+   
     
     @if ($_SERVER['REQUEST_URI'] === '/' )
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
@@ -74,13 +78,16 @@
 
     <script type="text/javascript" src="{{ asset('js/cities_addresses_data/citiesArray.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/cities_addresses_data/logic.js') }}" defer></script>
-    
+    <script type="text/javascript" src="{{ asset('js/login_register.js') }}" defer ></script>
+   
+   
     <script>
         $(".sidenav_toggle" ).click(function(e){  
             e.stopPropagation();
             $( "#sidenav_wrapper" ).toggle( "slide" );
         })
     </script>
+
 
 
 @if ($_SERVER['REQUEST_URI'] === '/' )
@@ -134,16 +141,14 @@
         function get_images(e){
             e.stopPropagation();
             let id = e.target.getAttribute('ad_id')
-            
             $.ajax({
-                url:'http://127.0.0.1:8000/ajax/popupimgs',
-                type: "GET",
+                url: 'http://127.0.0.1:8000/ajax/popupimgs',
+                type: 'GET',
                 data:{
                     id: id
                 },
                 success: function(res){
                     let src;
-
                     if(res.result){
                         // for(let i = 0 ; i < res.result.length ; i++){
                         //     src = res.result[i];
@@ -153,13 +158,18 @@
                         //     else
                         //         $(".swiper-wrapper").append(' <div class="swiper-slide"> <img src=" '+ src +' " alt=""> <p>תמונה '+ num +' מתוך ' + res.result.length+ '</p> </div> ')
                         // }
+
                         $("#images_popup").toggle();
                     }
-                }
-            });
-            
 
-    
+                },
+                error:function(jqXHR){
+                    alert("טעינת תמונות נכשלה")
+                },
+                complete: function(){
+                    
+                }
+            })          
         }
         $(".pic .num_of_imgs").click(function(e){  
             get_images(e);
@@ -182,6 +192,16 @@
     </script>
 @endif
 
+@if($errors->has('email') || $errors->has('password'))
+
+<script>
+    if($("#login_popup").is(":visible"))
+        showPopup("login_popup")
+
+    if($("#register_popup").is(":visible"))
+            showPopup("register_popup")
+</script>
+@endif
 </body>
 
 </html>

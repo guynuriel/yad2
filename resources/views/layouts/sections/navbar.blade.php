@@ -215,7 +215,7 @@
             </li>
             <li class="nav-item dropdown">
                 @if (Auth::guest())
-                    <a class="nav-link click" id="navbarDropdown" data-toggle="modal" data-target="#loginModal">
+                    <a class="nav-link click" onclick="showPopup('login_popup')" href="javascript:void(0)" id="navbarDropdown" >
                         <i class="far fa-user"></i> <span class="nav_text">התחברות</span>
                     </a>
                 @else
@@ -257,7 +257,7 @@
             @else
             
             <li class="new-post-btn">
-                <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="javascript:void(0)">+ פרסום מודעה חדשה</a>
+                <a class="nav-link" onclick="showPopup('login_popup')" href="javascript:void(0)">+ פרסום מודעה חדשה</a>
             </li>
             @endif
         </ul>
@@ -328,6 +328,8 @@
             <div class="section1">
                 <div class="row1 center_content">
                     @if (Auth::guest())
+                    <a onclick="showPopup('login_popup')" href="javascript:void(0)">
+
                         <div class="center_content p-4" id="user_disconnected">
                             <div>
                                 <div class=" w100 center_content">
@@ -336,6 +338,7 @@
                                 <p class="m-0 w100 f18 mt-1 color1">התחברות</p>
                             </div>
                         </div>
+                    </a>
                     @else
                         <a id="logout_mobile_nav" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
