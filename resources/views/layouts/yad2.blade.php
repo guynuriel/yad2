@@ -47,6 +47,10 @@
 
 
 
+
+    @include('partials.login')
+    @include('partials.register')
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
@@ -54,12 +58,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
     </script>
-
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-
-    @include('partials.login')
-    @include('partials.register')
-    @yield('scripts')
 
 
     @if ($_SERVER['REQUEST_URI'] === '/')
@@ -155,12 +154,13 @@
 
                 }
             })
-            
+
 
             // -------- popupimages funcs
             function get_images(e) {
                 e.stopPropagation();
                 let id = e.target.getAttribute('ad_id')
+                console.log(id)
                 $.ajax({
                     url: 'http://127.0.0.1:8000/ajax/popupimgs',
                     type: 'GET',
@@ -170,15 +170,16 @@
                     success: function(res) {
                         let src;
                         if (res.result) {
-                            // for(let i = 0 ; i < res.result.length ; i++){
-                            //     src = res.result[i];
-                            //     let num = i+1;
-                            //     if(src[15] === 'v')
-                            //         $(".swiper-wrapper").append('<div class="swiper-slide">  <video class="swiper_video" controls><source src="'+ src +'" type="video/mp4"> </video> <p>תמונה '+ num +' מתוך ' + res.result.length+ '</p> </div> ')
-                            //     else
-                            //         $(".swiper-wrapper").append(' <div class="swiper-slide"> <img src=" '+ src +' " alt=""> <p>תמונה '+ num +' מתוך ' + res.result.length+ '</p> </div> ')
-                            // }
-
+                            for(let i = 0 ; i < res.result.length ; i++){
+                                src = res.result[i];
+                                let num = i+1;
+                                if(src[15] === 'v')
+                                    $(".slideshow-container").append(' <div class="mySlides"><video class="swiper_video" controls><source src="'+ src +'" type="video/mp4"> </video><div class="numbertext fade">תמונה '+ num +' מתוך ' + res.result.length+ '</div></div>')
+                                else
+                                    $(".slideshow-container").append(' <div class="mySlides"><img src="'+ src +'"><div class="numbertext fade">תמונה '+ num +' מתוך ' + res.result.length+ '</div></div>')
+                            }
+                            
+                            window.showSlides(1);
                             $("#images_popup").toggle();
                         }
 
@@ -195,17 +196,21 @@
                 get_images(e);
             })
             $(".popup_images").click(function(e) {
+                console.log('ss')
                 get_images(e);
             })
             $("#container").click(function(e) {
                 e.stopPropagation();
             });
+            $(".carousel-control-prev-icon").click(function(e) {
+                e.stopPropagation();
+            });
 
             $("#images_popup").click(function() {
                 $("#images_popup").hide();
-                $(".swiper-wrapper").empty();
-                $(".swiper-wrapper").removeAttr('style');
-                $(".swiper-wrapper").attr('style', 'transition-duration: 0ms;');
+                $(".slideshow-container").empty();
+                $(".slideshow-container").html('<a class="prev" onclick="plusSlides(-1)">&#10094;</a><a class="next" onclick="plusSlides(1)">&#10095;</a>');
+               
 
 
             });
