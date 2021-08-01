@@ -161,6 +161,7 @@ let add_contact = function(){
 function showPreview(event, number){
     if(event.target.files.length > 0){
         let src = URL.createObjectURL(event.target.files[0]);
+        console.log(src);
         let preview = document.getElementById("image_upload_"+number+"-preview");
         preview.src = src;
         preview.style.display = "block";

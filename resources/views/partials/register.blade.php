@@ -30,11 +30,12 @@
                             <div>
                                 <input id="nameInput" type="text" class="form-control" name="name"
                                     value="{{ old('name') }}" autocomplete="name" autofocus>
-
-                                <span class="invalid-feedback" role="alert" id="nameError">
-                                    <strong></strong>
-                                </span>
                             </div>
+                            @error('name')
+                                    <span style="display:block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
 
                         <div class="form-group ">
@@ -42,11 +43,13 @@
 
                             <div class="">
                                 <input id="emailInput" type="email" class="form-control" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email">
+                                    value="{{ old('email') }}" autocomplete="email">
 
-                                <span class="invalid-feedback" role="alert" id="emailError">
-                                    <strong></strong>
-                                </span>
+                                @error('email')
+                                    <span style="display:block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -59,18 +62,24 @@
                                 <input id="passwordInput" type="password" class="form-control" name="password" required
                                     autocomplete="new-password">
 
-                                <span class="invalid-feedback" role="alert" id="passwordError">
-                                    <strong></strong>
-                                </span>
+                                @error('password')
+                                    <span style="display:block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group ">
                             <label for="password-confirm">אמת סיסמה</label>
-
                             <div>
                                 <input id="password-confirm" type="password" class="form-control"
                                     name="password_confirmation" required autocomplete="new-password">
+                                @error('password')
+                                    <span style="display:block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -85,7 +94,7 @@
                             <p class="flex center_content">כבר רשום?
                                 <a class="nav-link" onclick="switchPopup('register_popup','login_popup')"
                                     href="javascript:void(0)" type="button">
-                                    להרשמה
+                                    להתחברות
                                 </a>
                             </p>
                         </div>

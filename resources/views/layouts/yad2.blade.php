@@ -30,8 +30,8 @@
 
     {{-- / --}}
     @if ($_SERVER['REQUEST_URI'] === '/' )
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        {{-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> --}}
     @elseif ($_SERVER['REQUEST_URI'] === '/ads/create')    
         <link href="{{ asset('css/create.css') }}" rel="stylesheet">
     @endif
@@ -63,8 +63,8 @@
    
     
     @if ($_SERVER['REQUEST_URI'] === '/' )
-    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    {{-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> --}}
     <script type="text/javascript" src="{{ asset('js/home_page/search.js') }}" defer></script>
     <script type="text/javascript" type="module" src="{{ asset('js/home_page/swiper.js') }}" defer></script>
         
@@ -79,7 +79,20 @@
     <script type="text/javascript" src="{{ asset('js/cities_addresses_data/citiesArray.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/cities_addresses_data/logic.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/login_register.js') }}" defer ></script>
-   
+    
+    @if($errors->has('email') || $errors->has('password'))
+
+    <script>
+        $(document).ready(function(){
+
+            if(sessionStorage.getItem("form") === 'login_popup')
+            showPopup("login_popup")
+            
+            else if(sessionStorage.getItem("form") === 'register_popup')
+            showPopup("register_popup")
+        })
+    </script>
+    @endif
    
     <script>
         $(".sidenav_toggle" ).click(function(e){  
@@ -94,8 +107,8 @@
     <script>   
 
         // -------   pagination
-
         function infiniteScrollPagination (page){
+            
 
             $.ajax({
                 url: '?page=' + page,
@@ -130,7 +143,7 @@
 
         let page = 1;
         $(window).scroll(function(){
-            if($(window).scrollTop() + $(window).height() == $(document).height()){
+            if( ($(window).scrollTop() + $(window).height()) <= $(document).height()){
                 page++;
                 infiniteScrollPagination(page);
                
@@ -192,16 +205,7 @@
     </script>
 @endif
 
-@if($errors->has('email') || $errors->has('password'))
 
-<script>
-    if($("#login_popup").is(":visible"))
-        showPopup("login_popup")
-
-    if($("#register_popup").is(":visible"))
-            showPopup("register_popup")
-</script>
-@endif
 </body>
 
 </html>

@@ -43,7 +43,6 @@
                         <div class="">
                             <input id="emailInput" type="email" class="form-control" name="email"
                                 value="{{ old('email') }}" required autocomplete="email">
-
                             <span class="invalid-feedback" role="alert" id="emailError">
                                 <strong></strong>
                             </span>

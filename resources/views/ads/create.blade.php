@@ -17,7 +17,7 @@
             <form style="display: grid;" action="{{ route('ads.store') }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
-                {{----    --------------            חלק 1            -------------- --}}
+                {{-- --    --------------            חלק 1            -------------- --}}
 
 
                 <div class="header-step displaynone" id="header-step1">
@@ -290,7 +290,7 @@
 
 
 
-                {{----    --------------            חלק 2            -------------- --}}
+                {{-- --    --------------            חלק 2            -------------- --}}
 
 
 
@@ -348,7 +348,8 @@
 
                         <div>
                             <label for="asset_condition">מצב הנכס*</label>
-                            <select type="text" onfocusout="focusout('asset_conditionIN')" class="input" name="asset_condition" id="asset_conditionIN">
+                            <select type="text" onfocusout="focusout('asset_conditionIN')" class="input"
+                                name="asset_condition" id="asset_conditionIN">
                                 <option value="" disabled selected>משופץ? חדש מקבלן?</option>
                                 <option value="חדש מקבלן"> חדש מקבלן (לא גרו בו בכלל)</option>
                                 <option value="חדש"> חדש (נכס בן עד 5 שנים)</option>
@@ -360,20 +361,23 @@
 
                         <div class="autocomplete">
                             <label for="city">ישוב*</label>
-                            <input onfocusout="focusout('cityIN')" placeholder="איפה נמצא הנכס?" class="input" name="city" id="cityIN">
+                            <input onfocusout="focusout('cityIN')" placeholder="איפה נמצא הנכס?" class="input" name="city"
+                                id="cityIN">
                         </div>
 
 
                         <div class="autocomplete">
                             <label for="address_name">רחוב*</label>
-                            <input onfocusout="focusout('address_nameIN')" placeholder="הכנסת שם רחוב" class="input" name="address_name" id="address_nameIN">
+                            <input onfocusout="focusout('address_nameIN')" placeholder="הכנסת שם רחוב" class="input"
+                                name="address_name" id="address_nameIN">
                         </div>
 
 
                         <div class="flex">
                             <div style="width: 125px; margin-left:10px;">
                                 <label for="address_num">מס' בית*</label>
-                                <input onfocusout="focusout('address_numIN')" class="input" type="number" name="address_num" id="address_numIN">
+                                <input onfocusout="focusout('address_numIN')" class="input" type="number" name="address_num"
+                                    id="address_numIN">
                             </div>
                             <div style="width: 125px">
                                 <label for="entry_num">כניסה</label>
@@ -383,11 +387,13 @@
                         <div style="width: 400px" class="flex">
                             <div style="width:150px;margin-left:10px">
                                 <label for="floor">קומה*</label>
-                                <input onfocusout="focusout('floorIN')" class="input" type="number" name="floor" id="floorIN">
+                                <input onfocusout="focusout('floorIN')" class="input" type="number" name="floor"
+                                    id="floorIN">
                             </div>
                             <div style="width:150px">
                                 <label for="sum_of_floor">סה"כ קומות בבניין*</label>
-                                <input onfocusout="focusout('sum_of_floorIN')" class="input" type="number" name="sum_of_floor" id="sum_of_floorIN">
+                                <input onfocusout="focusout('sum_of_floorIN')" class="input" type="number"
+                                    name="sum_of_floor" id="sum_of_floorIN">
                             </div>
                             <div style="width:80px">
                                 <label for="is_on_pillars">על עמודים?</label>
@@ -397,7 +403,8 @@
 
                         <div>
                             <label for="neighborhood">שכונה</label>
-                            <input onfocusout="focusout('neighborhoodIN')" class="input" type="text" name="neighborhood" id="neighborhoodIN">
+                            <input onfocusout="focusout('neighborhoodIN')" class="input" type="text" name="neighborhood"
+                                id="neighborhoodIN">
                         </div>
                         <div>
                             <label for="area">אזור</label>
@@ -664,21 +671,21 @@
                             <div>
 
                                 <textarea style="    appearance: none;
-                                                -moz-appearance: none;
-                                                -webkit-appearance: none;
-                                                border-radius: 0;
-                                                -moz-border-radius: 0;
-                                                -webkit-border-radius: 0;
-                                                padding: 16px 10px 20px 70px;
-                                                overflow: auto;
-                                                font-family: Rubik,sans-serif;
-                                                font-size: 16px;
-                                                height: 170px;
-                                                width: 400px;
-                                                resize: none;
-                                                border: 1px solid #ccc;
-                                                border-radius: 4px;
-                                                background-color: #fff;" id="about_the_asset" name="about_the_asset"
+                                                    -moz-appearance: none;
+                                                    -webkit-appearance: none;
+                                                    border-radius: 0;
+                                                    -moz-border-radius: 0;
+                                                    -webkit-border-radius: 0;
+                                                    padding: 16px 10px 20px 70px;
+                                                    overflow: auto;
+                                                    font-family: Rubik,sans-serif;
+                                                    font-size: 16px;
+                                                    height: 170px;
+                                                    width: 400px;
+                                                    resize: none;
+                                                    border: 1px solid #ccc;
+                                                    border-radius: 4px;
+                                                    background-color: #fff;" id="about_the_asset" name="about_the_asset"
                                     maxlength="400" rows="4" cols="5"
                                     placeholder="זה המקום לתאר את הפרטים הבולטים, למשל, האם נערך שיפוץ במבנה, מה שופץ, כיווני אוויר, האווירה ברחוב וכו'"></textarea>
                             </div>
@@ -707,7 +714,7 @@
 
 
 
-                {{----    --------------            חלק 4            -------------- --}}
+                {{-- --    --------------            חלק 4            -------------- --}}
 
 
 
@@ -736,7 +743,8 @@
 
                         <div>
                             <label for="total_asset_size">גודל במ"ר סך הכל*</label>
-                            <input onfocusout="focusout('total_asset_sizeIN')" class="input" type="text" name="total_asset_size" id="total_asset_sizeIN">
+                            <input onfocusout="focusout('total_asset_sizeIN')" class="input" type="text"
+                                name="total_asset_size" id="total_asset_sizeIN">
                         </div>
 
                         <div>
@@ -748,9 +756,11 @@
                         <div class="flex">
                             <div>
                                 <label for="entry_date">תאריך כניסה</label>
-                                <input onfocusout="focusout('entry_dateIN')" class="input" type="date" name="entry_date" id="entry_dateIN">
+                                <input onfocusout="focusout('entry_dateIN')" class="input" type="date" name="entry_date"
+                                    id="entry_dateIN">
                             </div>
-                            <input onclick="focusout('entry_dateIN')" type="checkbox" name="is_immediate_entry" id="is_immediate_entryIN">
+                            <input onclick="focusout('entry_dateIN')" type="checkbox" name="is_immediate_entry"
+                                id="is_immediate_entryIN">
                             <label for="is_immediate_entry">מיידי</label>
                         </div>
 
@@ -804,128 +814,151 @@
 
                         <div class="images-container">
                             <div class="flex">
-                                <div class="img-upload-wrap" >
+                                <div class="img-upload-wrap">
                                     <div class="icon-wrapper">
                                         <i class="fas fa-video"></i>
                                         <div>העלאת ווידאו</div>
                                     </div>
-                                    <video style="z-index: 9998" id='video_preview' class="image_preview" controls>
+                                    <video style="z-index: 9998" id='video_preview' class="image_preview" muted autoplay
+                                        controls>
                                         <source id="image_upload_11-preview" src="" type="video/mp4">
                                     </video>
-                                    <div class="imgRemove" id="imgRemove_11" onclick="myImgRemove(11)"><i class="far fa-trash-alt"></i></div>
-                                    <input onchange="showPreview(event, 11)" accept="video/*" type="file" name="image_upload_11" id="image_upload_11">
+                                    <div class="imgRemove" id="imgRemove_11" onclick="myImgRemove(11)"><i
+                                            class="far fa-trash-alt"></i></div>
+                                    <input onchange="showPreview(event, 11)" accept="video/*" type="file"
+                                        name="image_upload_11" id="image_upload_11">
                                 </div>
-                                <div style="background-color: #eeeeee" class="img-upload-wrap mr-3" >
+                                <div style="background-color: #eeeeee" class="img-upload-wrap mr-3">
                                     <p style="top:0; text-align:center; line-height:18px;font-size:13px;">תמונה ראשית</p>
-                                    <div  class="main-icon-wrapper icon-wrapper">
+                                    <div class="main-icon-wrapper icon-wrapper">
                                         <i class="fas fa-plus"></i>
                                         <div>העלאת תמונה</div>
                                     </div>
-                                    
-                                    <input onchange="showPreview(event, 1)" accept="image/*" type="file" name="image_upload_1" id="image_upload_1">
+
+                                    <input onchange="showPreview(event, 1)" accept="image/*" type="file"
+                                        name="image_upload_1" id="image_upload_1">
                                     <img class="main_image_preview" id="image_upload_1-preview" src="">
-                                    <div class="imgRemove" id="imgRemove_1" onclick="myImgRemove(1)"><i class="far fa-trash-alt"></i></div>
+                                    <div class="imgRemove" id="imgRemove_1" onclick="myImgRemove(1)"><i
+                                            class="far fa-trash-alt"></i></div>
                                 </div>
                             </div>
                             <hr>
                             <div>
                                 {{-- 1 --}}
                                 <div class="flex">
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 2)" accept="image/*" type="file" name="image_upload_2" id="image_upload_2">
+
+                                        <input onchange="showPreview(event, 2)" accept="image/*" type="file"
+                                            name="image_upload_2" id="image_upload_2">
                                         <img class="image_preview" id="image_upload_2-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_2" onclick="myImgRemove(2)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_2" onclick="myImgRemove(2)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 3)" accept="image/*" type="file" name="image_upload_3" id="image_upload_3">
+
+                                        <input onchange="showPreview(event, 3)" accept="image/*" type="file"
+                                            name="image_upload_3" id="image_upload_3">
                                         <img class="image_preview" id="image_upload_3-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_3" onclick="myImgRemove(3)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_3" onclick="myImgRemove(3)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 4)" accept="image/*" type="file" name="image_upload_4" id="image_upload_4">
+
+                                        <input onchange="showPreview(event, 4)" accept="image/*" type="file"
+                                            name="image_upload_4" id="image_upload_4">
                                         <img class="image_preview" id="image_upload_4-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_4" onclick="myImgRemove(4)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_4" onclick="myImgRemove(4)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
                                 </div>
                                 {{-- 2 --}}
                                 <div class="flex">
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 5)" accept="image/*" type="file" name="image_upload_5" id="image_upload_5">
+
+                                        <input onchange="showPreview(event, 5)" accept="image/*" type="file"
+                                            name="image_upload_5" id="image_upload_5">
                                         <img class="image_preview" id="image_upload_5-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_5" onclick="myImgRemove(5)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_5" onclick="myImgRemove(5)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 6)" accept="image/*" type="file" name="image_upload_6" id="image_upload_6">
+
+                                        <input onchange="showPreview(event, 6)" accept="image/*" type="file"
+                                            name="image_upload_6" id="image_upload_6">
                                         <img class="image_preview" id="image_upload_6-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_6" onclick="myImgRemove(6)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_6" onclick="myImgRemove(6)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 7)" accept="image/*" type="file" name="image_upload_7" id="image_upload_7">
+
+                                        <input onchange="showPreview(event, 7)" accept="image/*" type="file"
+                                            name="image_upload_7" id="image_upload_7">
                                         <img class="image_preview" id="image_upload_7-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_7" onclick="myImgRemove(7)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_7" onclick="myImgRemove(7)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
                                 </div>
                                 {{-- 3 --}}
                                 <div class="flex">
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 8)" accept="image/*" type="file" name="image_upload_8" id="image_upload_8">
+
+                                        <input onchange="showPreview(event, 8)" accept="image/*" type="file"
+                                            name="image_upload_8" id="image_upload_8">
                                         <img class="image_preview" id="image_upload_8-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_8" onclick="myImgRemove(8)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_8" onclick="myImgRemove(8)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 9)" accept="image/*" type="file" name="image_upload_9" id="image_upload_9">
+
+                                        <input onchange="showPreview(event, 9)" accept="image/*" type="file"
+                                            name="image_upload_9" id="image_upload_9">
                                         <img class="image_preview" id="image_upload_9-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_9" onclick="myImgRemove(9)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_9" onclick="myImgRemove(9)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
-                                    <div class="img-upload-wrap m-2" >
-                                        <div  class="icon-wrapper">
+                                    <div class="img-upload-wrap m-2">
+                                        <div class="icon-wrapper">
                                             <i class="fas fa-plus"></i>
                                             <div>העלאת תמונה</div>
                                         </div>
-                                        
-                                        <input onchange="showPreview(event, 10)" accept="image/*" type="file" name="image_upload_10" id="image_upload_10">
+
+                                        <input onchange="showPreview(event, 10)" accept="image/*" type="file"
+                                            name="image_upload_10" id="image_upload_10">
                                         <img class="image_preview" id="image_upload_10-preview" src="">
-                                        <div class="imgRemove" id="imgRemove_10" onclick="myImgRemove(10)"><i class="far fa-trash-alt"></i></div>
+                                        <div class="imgRemove" id="imgRemove_10" onclick="myImgRemove(10)"><i
+                                                class="far fa-trash-alt"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -944,7 +977,7 @@
                             </div>
 
                         </div>
-                   </div>
+                    </div>
                 </div>
 
 
@@ -976,16 +1009,19 @@
                         <div class="flex">
                             <div class="input-wrapper">
                                 <label for="contact_name1">שם איש קשר*</label>
-                                <input onfocusout="focusout('contact_name1IN')" class="input" type="text" name="contact_name1" id="contact_name1IN">
+                                <input onfocusout="focusout('contact_name1IN')" class="input" type="text"
+                                    name="contact_name1" id="contact_name1IN">
                             </div>
                             <div class="input-wrapper">
                                 <label for="contact_number1">טלפון ראשי*</label>
-                                <input onfocusout="focusout('contact_number1IN')" class="input" type="text" name="contact_number1" id="contact_number1IN">
+                                <input onfocusout="focusout('contact_number1IN')" class="input" type="text"
+                                    name="contact_number1" id="contact_number1IN">
                             </div>
                             <div class="input-wrapper-last">
                                 <label for="contact_code_num1">קידומת*</label>
 
-                                <select onfocusout="focusout('contact_code_num1IN')" class="input" name="contact_code_num1" id="contact_code_num1IN">
+                                <select onfocusout="focusout('contact_code_num1IN')" class="input" name="contact_code_num1"
+                                    id="contact_code_num1IN">
                                     <option value="050">050</option>
                                     <option value="051">051</option>
                                     <option selected value="052">052</option>
@@ -1043,7 +1079,8 @@
                         </div>
                         <div class="input-wrapper">
                             <label for="contact_mail1">דוא"ל</label>
-                            <input onfocusout="focusout('contact_mail1IN')" class="input" type="text" name="contact_mail1" id="contact_mail1IN">
+                            <input onfocusout="focusout('contact_mail1IN')" class="input" type="text" name="contact_mail1"
+                                id="contact_mail1IN">
                         </div>
                     </div>
 
