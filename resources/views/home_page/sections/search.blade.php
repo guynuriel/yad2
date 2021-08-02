@@ -1,3 +1,4 @@
+
 <section class="my-5">
     @if (session('message'))
         <p class="mssg text-center color4">{{ session('message') }}</p>
@@ -19,12 +20,12 @@
 
         </div>
 
-        
+
 
             <div class="flex">
                 <div class="autocomplete" style="margin-left: 10px;">
                     <label class="f14" for="place">חפשו אזור, עיר, שכונה או רחוב</label>
-                    <input type="text" style="width: 175px" class="form-control" name="place"
+                    <input value="{{ array_key_exists('city', $query) ? $query['city'] :'' }}" type="text" style="width: 175px" class="form-control" name="place"
                         id="city_search_autocomplete" placeholder="עיר מגורים" />
                 </div>
                 <div style="position: relative;margin-left:10px;">

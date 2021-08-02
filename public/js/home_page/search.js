@@ -76,14 +76,14 @@ search_asset_type3.addEventListener('change', function() {
 });
 
 
-let search_dropdown_toggle = function(input,dropnum=0){
+let search_dropdown_toggle = function( input, dropnum = 0 ){
     
     // $('.collapse').toggle();
 
-    if(dropnum>0){
+    if(dropnum > 0){
 
-        $('#input'+input+'_dropdown'+dropnum).toggle();
-        $('#input'+input+'-d'+dropnum+'-icon'+dropnum).toggleClass('fa-chevron-up');
+        $('#input' + input + '_dropdown' + dropnum).toggle();
+        $('#input' + input + '-d' + dropnum + '-icon'+ dropnum).toggleClass('fa-chevron-up');
 
     }else{
         
@@ -110,8 +110,8 @@ let advancedSearch = function(){
 //     advancedSearch()
 
 
-
-function searchAndSort(searchType = 1){
+// $('#search-floor1')
+function searchAndSort(){
     let url = '/?search=t'; 
     let p = {
         floor1:$('#search-floor1').val(),

@@ -22,8 +22,15 @@ class AdsController extends Controller
     // תצוגת דף הבית
     public function index(Request $request)
     {
-        
-        $ads = Ads::latest()->paginate(8);  
+           
+        // search progress
+        if(request('search')){
+            $ads = Ads::latest()->get();
+            $ads = $this->search_form(Ads::latest(),request('search'));     
+            $ads = $ads->paginate(8);
+        }else{
+            $ads = Ads::latest()->paginate(8);  
+        }
         
         // Infinite Scroll Pagination
         if($request->ajax()){
@@ -31,11 +38,7 @@ class AdsController extends Controller
             return response()->json(['html'=>$view]);
         } 
         
-        // search progress
-        if(request('search')){
-            $ads = $this->search_form($ads,request('search'));           
-        }
-            
+
         // normal progress
         $query = $request->all();
         return view('home_page.index',['ads'=>$ads,'query'=>$query]);
@@ -240,7 +243,7 @@ class AdsController extends Controller
     public function search_form($ads, $searchType)
     {
         if(request('city'))
-        $ads = $this->is_Equal($ads, 'city', request('city'));
+            $ads = $this->is_Equal($ads, 'city', request('city'));
 
         if(request('rooms1'))
             $ads = $this->is_smaller($ads, 'rooms', request('rooms1'));
@@ -275,107 +278,77 @@ class AdsController extends Controller
 
     public function is_Equal($ads,$col,$val)
     {
-        $new_ads =[];
 
-        foreach($ads as $ad){
-            if($ad[$col] == $val){
-                $new_ads[]= $ad;
-            };
-        };
 
-        return $new_ads;
+        $ads = $ads->where($col,'=',$val);
+        // $new_ads =[];
+        // foreach($ads as $ad){
+        //     echo $ad[$col] . ' = ' . $val;
+        //     if($ad[$col] == $val){
+        //         $new_ads[]= $ad;
+                
+        //     };
+        // };
+        // return $new_ads;
+        return $ads;
     } 
-    public function check_asset_type($ads)
-    {
-        $new_ads =[];
-        foreach($ads as $ad)
-        {
-            for($i = 0 ; $i < (int)request('sumOfAssetsType') ; $i++ )
-            {             
-                
-                if(request('asset'.$i) == $ad->asset_type )
-                {
-                    $new_ads[]= $ad;
-                    break;
-                }
-                        
-            }
-        }
-        return $new_ads;
-    }
-    public function check_asset_extras($ads)
-    {
-        $new_ads =[];
-        foreach($ads as $ad)
-        {
-            if($ad->asset_extras[0] === "0")
-                continue;
-                
-            for($i = 0 ; $i < (int)request('extras') ; $i++ )
-            {             
-                for($j = 0 ; $j < count($ad->asset_extras) ; $j++ )
-                { 
-                    if(request('extra'.$i) == $ad->asset_extras[$j] )
-                    {
-                        $new_ads[]= $ad;
-                        break;
-                    }
-                
-                }
-                        
-            }
-        }
-        return $new_ads;
-    }
-    public function check_entry_date($ads)
-    {
-        $user_date=0;
-        $new_ads =[];
-        foreach($ads as $ad)
-        {  
-            if($ad->is_immediate_entry){
-                $ad_date =time(); 
-            }else{
-                $ad_date = strtotime($ad->entry_date);
-            }
-
-            if(request('entry_now')){
-                if($ad->is_immediate_entry === '1' || time() >= $ad_date ){
-                    $new_ads[]= $ad;
-                }
-            }else{
-                $user_date = strtotime(request('entry_date'));
-                if( $user_date <= $ad_date ){
-                    $new_ads[]= $ad;
-                }
-            }
-        }
-        return $new_ads;
-    }
     public function is_bigger($ads,$col,$val)
     {
-        $new_ads =[];
-
-        foreach($ads as $ad){
-            if((float)$ad[$col] <= (float)$val){
-                $new_ads[]= $ad;
-            };
-        };
-
-        return $new_ads;
+        $ads = $ads->where($col, '<=', (int)$val);
+        return $ads;
     
     } 
     public function is_smaller($ads,$col,$val)
     {
-        $new_ads =[];
-
-        foreach($ads as $ad){
-            if((float)$ad[$col] >= (float)$val){
-                $new_ads[]= $ad;
-            };
-        };
-
-        return $new_ads;
+        $ads = $ads->where($col, '>=', (int)$val);
+        return $ads;
     } 
+    public function check_asset_type($ads)
+    {   
+        $assets_type = [];
+        for($i = 0 ; $i < (int)request('sumOfAssetsType') ; $i++ )
+        {             
+            $assets_type[] =  request('asset'.$i);
+        }
+        $ads = $ads->where(function ($ads) use ($assets_type){
+            foreach ($assets_type as $key => $value)
+            {
+                $ads->orWhere('asset_type','=',$value);
+            }
+        });
+
+        return $ads;
+    }
+
+    public function check_asset_extras($ads)
+    {
+        $asset_extras = [];
+        for($i = 0 ; $i < (int)request('extras') ; $i++ )
+        {             
+            $asset_extras[] =  request('extra'.$i);
+        }
+        // $ads = $ads->whereJsonContains(function ($ads) use ($assets_extras){
+        //     foreach ($assets_extras as $key => $value)
+        //     {
+        //         $ads->orWhere('assets_extras['.$value.']','=',$value);
+        //     }
+        // });
+        $ads = $ads->whereJsonContains('asset_extras',$asset_extras);
+        
+        return $ads;
+    }
+    public function check_entry_date($ads)
+    {
+            if(request('entry_now')){
+                $ads = $ads->where('is_immediate_entry','=','1')
+                ->orWhere('entry_date','<',date("d/m/Y"));
+            
+            }else{
+                $ads = $ads->where('entry_date','>=',request('entry_date'));
+            }
+        
+        return $ads;
+    }
+  
 
 }

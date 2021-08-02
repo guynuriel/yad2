@@ -11,7 +11,7 @@
     <title>Yad2</title>
 
     <!-- Scripts -->
-    @if ($_SERVER['REQUEST_URI'] === '/')
+    @if ($_SERVER['REQUEST_URI'] === '/' || request('search'))
         <script src="{{ asset('js/home.js') }}" defer></script>
     @endif
 
@@ -29,10 +29,7 @@
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 
     {{-- / --}}
-    @if ($_SERVER['REQUEST_URI'] === '/')
-        {{-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> --}}
-    @elseif ($_SERVER['REQUEST_URI'] === '/ads/create')
+    @if ($_SERVER['REQUEST_URI'] === '/ads/create')
         <link href="{{ asset('css/create.css') }}" rel="stylesheet">
     @endif
 
@@ -61,9 +58,8 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
 
-    @if ($_SERVER['REQUEST_URI'] === '/')
-        {{-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> --}}
+    @if ($_SERVER['REQUEST_URI'] === '/'  || request('search'))
+
         <script type="text/javascript" src="{{ asset('js/home_page/search.js') }}" defer></script>
         <script type="text/javascript" type="module" src="{{ asset('js/home_page/swiper.js') }}" defer></script>
 
@@ -102,7 +98,7 @@
 
 
 
-    @if ($_SERVER['REQUEST_URI'] === '/')
+    @if ($_SERVER['REQUEST_URI'] === '/' || request('search'))
         <script>
             var isMoreImages = true;
             // -------   pagination
@@ -133,7 +129,7 @@
 
                         },
                         error: function(jqXHR) {
-                            alert("טעינת מודעות נוספות נכשלה")
+                            $('#ajax-load').html("טעינת מודעות נוספות נכשלה")
                         },
                         complete: function() {
 
