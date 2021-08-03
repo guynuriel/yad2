@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="icon" type="image/png" href="{{ asset('images/logos/yad2Logo.png') }}"/>
     <title>Yad2</title>
 
     <!-- Scripts -->
@@ -37,7 +37,6 @@
 
 <body class="antialiased">
     <!-- Scripts -->
-
 
     @include('layouts.sections.navbar')
     @yield('content')
@@ -141,7 +140,7 @@
                 }
             }
 
-            let page = 1;
+            var page = 1;
 
             $(window).scroll(function() {
                 if (($(window).scrollTop() + $(window).height()) >= $(document).height()) {
@@ -157,6 +156,7 @@
                 e.stopPropagation();
                 let id = e.target.getAttribute('ad_id')
                 console.log(id)
+                
                 $.ajax({
                     url: 'http://127.0.0.1:8000/ajax/popupimgs',
                     type: 'GET',

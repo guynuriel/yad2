@@ -22,15 +22,15 @@ class AdsController extends Controller
     // תצוגת דף הבית
     public function index(Request $request)
     {
-           
+        
         // search progress
-        if(request('search')){
+       if(request('search') === 't'){
             $ads = Ads::latest()->get();
             $ads = $this->search_form(Ads::latest(),request('search'));     
             $ads = $ads->paginate(8);
         }else{
             $ads = Ads::latest()->paginate(8);  
-        }
+        } 
         
         // Infinite Scroll Pagination
         if($request->ajax()){
