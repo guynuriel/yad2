@@ -21,7 +21,7 @@ class Ads extends Model
         'contacts' => 'array'
     ];
 
-    public function insert(Request $request, Ads $ad){
+    public function insert(Ads $ad){
         $ad->user_id = Auth::user()->id;
         $ad->category = "מכירה";//request('category');
         $ad->asset_type = request('asset_type');
