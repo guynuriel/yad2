@@ -21,6 +21,14 @@ class Ads extends Model
         'contacts' => 'array'
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function favorites(){
+        return $this->belongsToMany(Favorites::class,'favorites','ad_id','user_id');
+    }
+
     public function insert(Ads $ad){
         $ad->user_id = Auth::user()->id;
         $ad->category = "מכירה";//request('category');

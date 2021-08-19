@@ -15,12 +15,11 @@ class CreateAdsTable extends Migration
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');  
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('set null');
-            // $table->string('user_id');
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            
             $table->string('category');
             $table->string('asset_type');
             $table->string('asset_condition');
@@ -29,26 +28,25 @@ class CreateAdsTable extends Migration
             $table->string('address_num');
             $table->string('area');
             $table->string('neighborhood');
-            $table->string('flour');
+            $table->string('floor');
             $table->string('entry_num')->nullable();
-            $table->string('sum_of_flour');
+            $table->string('sum_of_floor');
             $table->boolean('is_on_pillars');
             $table->integer('parking_place');
             $table->string('rooms');
             $table->string('porch');
             $table->string('about_the_asset')->nullable();
-            $table->json('asset_extras')->nullable();
+            $table->json('asset_extras')->default(['0']);
             $table->integer('asset_size')->nullable();
             $table->integer('total_asset_size');
             $table->integer('price')->nullable();
-            $table->date('entry_date');
+            $table->date('entry_date')->nullable();
             $table->boolean('is_immediate_entry');
             $table->json('images')->nullable();
-            $table->json('contacts');           
-            
-
-
+            $table->json('contacts');
             $table->timestamps();
+
+            
         });
     }
 

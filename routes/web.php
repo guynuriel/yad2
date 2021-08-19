@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +40,8 @@ Route::delete('/ads/{id}', $ads_controller.'destroy');
 Route::get('/ajax/popupimgs', $ads_controller.'get_images');
 
 
-Auth::routes();
+Auth::routes([
+    'register' => true,
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Ads;
+use App\Models\User;
+use App\Models\User_info;
+//  return User::with('user_info')->get();
 // use database\repository\storeAdsRepository;
 
 

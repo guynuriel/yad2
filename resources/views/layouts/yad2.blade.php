@@ -99,10 +99,10 @@
 
     @if ($_SERVER['REQUEST_URI'] === '/' || request('search'))
         <script>
-            var isMoreImages = true;
+            var isMoreAds = true;
             // -------   pagination
             function infiniteScrollPagination(page) {
-                if (window.isMoreImages) {
+                if (window.isMoreAds) {
                     $.ajax({
                         url: '?page=' + page,
                         type: 'GET',
@@ -113,7 +113,7 @@
                             if (ads.html == "") {
                                 $('#ajax-load').html("אין מודעות נוספות");
                                 $('#ajax-load').css("display", "block");
-                                window.isMoreImages = false;
+                                window.isMoreAds = false;
                                 return;
                             }
                             setTimeout(function() {
@@ -149,7 +149,6 @@
 
                 }
             })
-
 
             // -------- popupimages funcs
             function get_images(e) {
@@ -206,9 +205,6 @@
                 $("#images_popup").hide();
                 $(".slideshow-container").empty();
                 $(".slideshow-container").html('<a class="prev" onclick="plusSlides(-1)">&#10094;</a><a class="next" onclick="plusSlides(1)">&#10095;</a>');
-               
-
-
             });
         </script>
     @endif

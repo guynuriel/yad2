@@ -21,20 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            // $table->string('first_name');
-            // $table->string('last_name');
-            // $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
-            // $table->string('password');
-            // $table->string('phone_number');
-            // $table->date('bday');
-            // $table->integer('ads_num');
-            // $table->json('my_ads');
-            // $table->json('like_ads');
-
-            // $table->rememberToken();
-            // $table->timestamps();
         });
     }
 
