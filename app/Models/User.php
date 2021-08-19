@@ -45,16 +45,19 @@ class User extends Authenticatable
 
     ];
 
+    // return user with his own ads
     public function ads(){
         return $this->hasMany(Ads::class);
     }
 
+
+    // return user with favorite ads
     public function favorites(){
-        return $this->belongsToMany(Favorites::class,'favorites','ad_id','user_id');
+        return $this->belongsToMany(Ads::class,'favorites','user_id','ad_id');
     }
 
+    // return user with info
     public function user_info(){
-
         return $this->hasOne(User_info::class);
     }
 }

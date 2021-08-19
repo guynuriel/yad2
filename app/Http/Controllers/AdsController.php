@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Ads;
 use App\Models\User;
 use App\Models\User_info;
+use Favorites;
+
 //  return User::with('user_info')->get();
 // use database\repository\storeAdsRepository;
 
@@ -25,7 +27,6 @@ class AdsController extends Controller
     // תצוגת דף הבית
     public function index(Request $request)
     {
-        
         // search progress
        if(request('search') === 't'){
             $ads = Ads::latest()->get();

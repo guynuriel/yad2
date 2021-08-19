@@ -21,50 +21,35 @@ class Ads extends Model
         'contacts' => 'array'
     ];
 
+    // return ads with the owner user
     public function user(){
         return $this->belongsTo(User::class);
     }
 
+    // return ads with user that like them
     public function favorites(){
-        return $this->belongsToMany(Favorites::class,'favorites','ad_id','user_id');
+        return $this->belongsToMany(User::class,'favorites','ad_id','user_id');
     }
+
 
     public function insert(Ads $ad){
         $ad->user_id = Auth::user()->id;
-        $ad->category = "מכירה";//request('category');
-        $ad->asset_type = request('asset_type');
-        $ad->asset_condition = request('asset_condition');
-        $ad->city = request('city');
-        $ad->address_name = request('address_name');
-        $ad->address_num = request('address_num');
-        $ad->area = request('area');
-        $ad->neighborhood = request('neighborhood');
-        $ad->floor = request('floor');
-        $ad->entry_num = request('entry_num');
-        $ad->sum_of_floor = request('sum_of_floor');
+        
 
         if(request('is_on_pillars')){
-            $ad->is_on_pillars = true;
+            $is_on_pillars = true;
+        }else{
+            $is_on_pillars = false;
         }
-        else{
-            $ad->is_on_pillars = false;
-        }
-        $ad->parking_place = (int)request('parking_place');
-        $ad->about_the_asset = request('about_the_asset');
+        
         if(request('asset_extras')){
             $ad->asset_extras = request('asset_extras');
         }
-        $ad->asset_size = (int)request('asset_size');
-        $ad->total_asset_size = (int)request('total_asset_size');
-        $ad->price = (int)request('price');
-        $ad->rooms = request('rooms');
-        $ad->porch = request('porch');
-        $ad->entry_date = request('entry_date');
+
         if(request('is_immediate_entry')){
-            $ad->is_immediate_entry = true;
-        }
-        else{
-            $ad->is_immediate_entry = false;
+            $is_immediate_entry = true;
+        }else{
+            $is_immediate_entry = false;
         }
 
         $man1=[
@@ -90,8 +75,7 @@ class Ads extends Model
                 'man1'=>$man1
             ]; 
         }
-        
-        
+
         for($i = 1 ; $i <= 11 ; $i++){
             if(request('image_upload_'.$i))
                 $images_files[] = request('image_upload_'.$i);
@@ -112,8 +96,28 @@ class Ads extends Model
             $images_url[]= "/images/upload/".$new_name;
             $num++;
         }
-          
-        
+
+        $ad->category = "selling";
+        $ad->about_the_asset = request('about_the_asset');
+        $ad->asset_type = request('asset_type');
+        $ad->asset_condition = request('asset_condition');
+        $ad->city = request('city');
+        $ad->address_name = request('address_name');
+        $ad->address_num = request('address_num');
+        $ad->area = request('area');
+        $ad->neighborhood = request('neighborhood');
+        $ad->floor = request('floor');
+        $ad->entry_num = request('entry_num');
+        $ad->sum_of_floor = request('sum_of_floor');
+        $ad->rooms = request('rooms');
+        $ad->porch = request('porch');
+        $ad->entry_date = request('entry_date');
+        $ad->parking_place = (int)request('parking_place');
+        $ad->asset_size = (int)request('asset_size');
+        $ad->total_asset_size = (int)request('total_asset_size');
+        $ad->price = (int)request('price');
+        $ad->$is_immediate_entry;
+        $ad->$is_on_pillars;
         $ad->images = $images_url;
 
         $ad->save();

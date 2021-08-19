@@ -80,7 +80,7 @@
             <div id="info_container" >
                 <div>                   
                     <p style="padding-right: 2.5%"><strong>על הנכס</strong></p>
-                    <p style="padding-right: 2.5%">{{ $ad->about_the_asset }}</p>
+                    <p style="padding-right: 2.5%;padding-left: 2.5%;">{{ $ad->about_the_asset }}</p>
                     <div class="flex p-1">
                         <div style="width: 45%;margin-right:2.5%" >
                             <div>
