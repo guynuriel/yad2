@@ -11,16 +11,13 @@ use App\Models\User_info;
 use Favorites;
 
 //  return User::with('user_info')->get();
-// use database\repository\storeAdsRepository;
+//  Debugbar::info('');
 
 
 class AdsController extends Controller
 {
-
     public function __construct()
     {
-        // $this->middleware('auth'); נותן גישה רק למשתמשים רשומים לקבל את כל התוכן
-        // $this->middleware('guest'); נותן גישה רק למשתמשים לא רשומים לקבל את כל התוכן
         $this->middleware('auth', ['except'=>['index','show','get_images']]);// רק משתמשים מחוברים יוכלו לקבל תוכן מלבד העמודים המפורטים שפתוחים לכולם
     }
     
@@ -28,7 +25,6 @@ class AdsController extends Controller
     // תצוגת דף הבית
     public function index(Request $request)
     {
-        Debugbar::info('1');
         // search progress
         if(request('search') === 't'){
             Debugbar::info('2');
@@ -38,7 +34,6 @@ class AdsController extends Controller
         }else{
             $ads = Ads::latest()->paginate(8);  
         } 
-        Debugbar::info($ads);
         
         // Infinite Scroll Pagination
         if($request->ajax()){

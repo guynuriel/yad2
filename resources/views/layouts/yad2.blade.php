@@ -103,8 +103,20 @@
             // -------   pagination
             function infiniteScrollPagination(page) {
                 if (window.isMoreAds) {
+
+                    // check if exists params in the url and add them to the ajax
+                    let urlSearchParams = new URLSearchParams(window.location.search);
+                    let params = Object.fromEntries(urlSearchParams.entries());
+                    let url = '?page=' + page;
+                    if (params) {
+                        for (let key in params) {
+                            if (params.hasOwnProperty(key)&& params[key]!='' ) {
+                                url += "&" + key + "=" + params[key];
+                            }
+                        }
+                    }
                     $.ajax({
-                        url: '?page=' + page,
+                        url: url,
                         type: 'GET',
                         beforeSend: function() {
                             $('#ajax-load').show();

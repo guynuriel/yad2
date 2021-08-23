@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\Debugbar\Facade as DebugBar;
 
 class Ads extends Model
 {
@@ -116,8 +117,8 @@ class Ads extends Model
         $ad->asset_size = (int)request('asset_size');
         $ad->total_asset_size = (int)request('total_asset_size');
         $ad->price = (int)request('price');
-        $ad->$is_immediate_entry;
-        $ad->$is_on_pillars;
+        $ad->is_immediate_entry = $is_immediate_entry;
+        $ad->is_on_pillars = $is_on_pillars;
         $ad->images = $images_url;
 
         $ad->save();
