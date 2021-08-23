@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Barryvdh\Debugbar\Facade as DebugBar;
 use App\Models\Ads;
 use App\Models\User;
 use App\Models\User_info;
@@ -27,14 +28,17 @@ class AdsController extends Controller
     // תצוגת דף הבית
     public function index(Request $request)
     {
+        Debugbar::info('1');
         // search progress
-       if(request('search') === 't'){
+        if(request('search') === 't'){
+            Debugbar::info('2');
             $ads = Ads::latest()->get();
             $ads = $this->search_form(Ads::latest(),request('search'));     
             $ads = $ads->paginate(8);
         }else{
             $ads = Ads::latest()->paginate(8);  
         } 
+        Debugbar::info($ads);
         
         // Infinite Scroll Pagination
         if($request->ajax()){
