@@ -79,7 +79,7 @@
                     <div class="image_container">
                         <div class="pic">
                             @if (is_array($ad->images))
-                                <div class="num_of_imgs">
+                                <div onclick="get_images(event);" class="num_of_imgs">
                                     @if ($ad->images[0][15] === 'v')
                                         <i ad_id="{{ $ad->id }}" class="far fa-film text-white f18"> {{ count($ad->images)}}</i>
                                     @else
@@ -87,7 +87,7 @@
                                     @endif
                                 </div>
                             @endif
-                            <img ad_id="{{ $ad->id }}" class="popup_images" src="{{ (is_array( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
+                            <img ad_id="{{ $ad->id }}" onclick="get_images(event);" class="popup_images" src="{{ (is_array( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
                         </div>
                     </div>
                     <div class="m-2">

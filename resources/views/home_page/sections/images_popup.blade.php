@@ -114,7 +114,7 @@
 </style>
 <section id="images_popup">
     <div id="wrapper">
-        <div id="container">
+        <div  id="container">
             <!-- Slideshow container -->
             <div class="slideshow-container">
 

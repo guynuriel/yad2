@@ -123,7 +123,6 @@ $(window).scroll(function() {
 function get_images(e) {
     e.stopPropagation();
     let id = e.target.getAttribute('ad_id')
-    console.log(id)
     
     $.ajax({
         url: 'http://127.0.0.1:8000/ajax/popupimgs',
@@ -156,13 +155,8 @@ function get_images(e) {
         }
     })
 }
-$(".pic .num_of_imgs").click(function(e) {
-    get_images(e);
-})
-$(".popup_images").click(function(e) {
-    console.log('ss')
-    get_images(e);
-})
+
+
 $("#container").click(function(e) {
     e.stopPropagation();
 });
