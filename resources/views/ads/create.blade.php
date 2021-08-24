@@ -337,7 +337,7 @@
                                 <option value="בניין מגורים">בניין מגורים</option>
                                 <option value="סטודיו/לופט">סטודיו/לופט</option>
                                 <option value="מחסן">מחסן</option>
-                                <option value="קב' רכישה/ זכות לנכס">קב' רכישה/ זכות לנכס</option>
+                                <option value="קב' רכישה/זכות לנכס">קב' רכישה/ זכות לנכס</option>
                                 <option value="חניה">חניה</option>
                                 <option value="כללי">כללי</option>
 

@@ -20,6 +20,44 @@
 
         </div>
 
+        <style>
+            #asset-type-ul-dd{
+                padding: 5px;
+                min-width: 150px;
+                border: 1px solid rgba(0,0,0,.125);
+                margin: 0;
+                width: 300px;
+            }
+
+            #asset-type-ul-dd > li{
+                margin-bottom: 5px;
+                padding: 10px;
+                background-color: #f9f9f9;
+                list-style: none;
+                position: relative;
+            }
+            #asset-type-ul-dd > li >i{
+                position: absolute;
+                left: 10px;
+                top: 15px;
+            }
+            #asset-type-ul-dd > li > ul > li{
+                padding: 10px 20px;
+                border-bottom: 1px solid #eee;
+                list-style: none;
+            }
+            .input_dropdown{
+                background-color: white !important;
+            }
+            .search_btn_dd{
+                background-color:white;
+                border:1px solid #d0d5db; 
+                border-radius:3px; 
+                padding-top:5px;
+                height:38px;
+                color:#999
+            }
+        </style>
 
 
             <div class="flex">
@@ -30,18 +68,16 @@
                 </div>
                 <div style="position: relative;margin-left:10px;">
                     <p style="margin-bottom: 8px">סוג הנכס</p>
-                    <button class="click"
-                        style="background-color:white;border:1px solid #d0d5db; border-radius:3px; padding-top:5px;height:38px;color:#999"
-                        onclick="search_dropdown_toggle(1)">
+                    <button class="click search_btn_dd" name="1">
                         בחרו סוגי נכס <i id="input1-icon" class="fas fa-chevron-down h-center"></i>
                     </button>
                     <div id="input_dropdown1" class="displaynone"
                         style="position: absolute;top:70px;background-color:white;width: max-content;z-index: 9999;">
-                        <ul style="width: 200px" class="pr-0">
-                            <li><input id="search_asset_type_all" class="ml-1" type="checkbox" value="0" /> כל סוגי הדירות</li>
-                            <li><input id="search_asset_type1" class="ml-1 asset-type1" type="checkbox" value="1" /> דירות <i onclick="search_dropdown_toggle(1,1)"
-                                    id="input1-d1-icon1" class="fas fa-chevron-down h-center"></i> </li>
-                            <li id="input1_dropdown1" class="displaynone">
+                        <ul id="asset-type-ul-dd" >
+                            <li><input id="search_asset_type_all" class="ml-1" type="checkbox" {{ array_key_exists('asset_type_all', $search_params) ? 'checked' :'' }} value="0"  /> כל סוגי הדירות</li>
+                            <li><input id="search_asset_type1" class="ml-1 asset-type1" type="checkbox" value="1" {{ array_key_exists('asset_type1', $search_params) ? 'checked' :'' }} /> דירות <i onclick="search_dropdown_toggle(1,1)"
+                                    id="input1-d1-icon1" class="fas fa-chevron-down h-center mr-1"></i> </li>
+                            <li id="input1_dropdown1" class="displaynone input_dropdown">
                                 <ul class="pr-0">
                                     @if (array_key_exists('assets_types', $search_params))
                                         <li><input {{ in_array('דירה', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירה" /> דירה</li>
@@ -66,30 +102,45 @@
                                     @endif
                                 </ul>
                             </li>
-                            <li><input id="search_asset_type2" class="ml-1 asset-type2" type="checkbox" value="2" /> בתים <i onclick="search_dropdown_toggle(1,2)"
-                                    id="input1-d2-icon2" class="fas fa-chevron-down h-center"></i> </li>
-                            <li id="input1_dropdown2" class="displaynone">
+                            <li><input id="search_asset_type2" class="ml-1 asset-type2" type="checkbox" value="2" {{ array_key_exists('asset_type2', $search_params) ? 'checked' :'' }} /> בתים <i onclick="search_dropdown_toggle(1,2)"
+                                    id="input1-d2-icon2" class="fas fa-chevron-down h-center mr-1"></i> </li>
+                            <li id="input1_dropdown2" class="displaynone input_dropdown">
                                 <ul class="pr-0">
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="בית פרטי/קוטג" /> בית פרטי/קוטג'</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="דו משפחתי" /> דו משפחתי</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="משק חקלאי/נחלה" /> משק חקלאי/נחלה</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="משק עזר" /> משק עזר</li>
-
+                                    @if (array_key_exists('assets_types', $search_params))
+                                        <li><input {{ in_array('בית פרטי/קוטג', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="בית פרטי/קוטג" /> בית פרטי/קוטג'</li>
+                                        <li><input {{ in_array('דו משפחתי', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="דו משפחתי" /> דו משפחתי</li>
+                                        <li><input {{ in_array('משק חקלאי/נחלה', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="משק חקלאי/נחלה" /> משק חקלאי/נחלה</li>
+                                        <li><input {{ in_array('משק עזר', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="משק עזר" /> משק עזר</li>
+                                    @else
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="בית פרטי/קוטג" /> בית פרטי/קוטג'</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="דו משפחתי" /> דו משפחתי</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="משק חקלאי/נחלה" /> משק חקלאי/נחלה</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type2" type="checkbox" value="משק עזר" /> משק עזר</li>
+                                    @endif
                                 </ul>
                             </li>
-                            <li><input id="search_asset_type3" class="ml-1 asset-type3" type="checkbox" value="3" /> סוגים נוספים <i
+                            <li><input id="search_asset_type3" class="ml-1 asset-type3" type="checkbox" value="3" {{ array_key_exists('asset_type3', $search_params) ? 'checked' :'' }} /> סוגים נוספים <i
                                     onclick="search_dropdown_toggle(1,3)" id="input1-d3-icon3"
-                                    class="fas fa-chevron-down h-center"></i></li>
-                            <li id="input1_dropdown3" class="displaynone">
+                                    class="fas fa-chevron-down h-center mr-1"></i></li>
+                            <li id="input1_dropdown3" class="displaynone input_dropdown">
                                 <ul class="pr-0">
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="מגרשים" /> מגרשים</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="דיור מוגן" /> דיור מוגן</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="בניין מגורים" /> בניין מגורים</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="מחסן" /> מחסן</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="חניה" /> חניה</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="קב' רכישה/ זכות לנכס" /> קב' רכישה/ זכות לנכס</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="כללי" /> כללי</li>
-                                    
+                                    @if (array_key_exists('assets_types', $search_params))
+                                        <li><input {{ in_array('מגרשים', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="מגרשים" /> מגרשים</li>
+                                        <li><input {{ in_array('דיור מוגן', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="דיור מוגן" /> דיור מוגן</li>
+                                        <li><input {{ in_array('בניין מגורים', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="בניין מגורים" /> בניין מגורים</li>
+                                        <li><input {{ in_array('מחסן', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="מחסן" /> מחסן</li>
+                                        <li><input {{ in_array('חניה', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="חניה" /> חניה</li>
+                                        <li><input {{ in_array("קב' רכישה/זכות לנכס", $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="קב' רכישה/זכות לנכס" /> קב' רכישה/זכות לנכס</li>
+                                        <li><input {{ in_array('כללי', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="כללי" /> כללי</li>
+                                    @else
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="מגרשים" /> מגרשים</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="דיור מוגן" /> דיור מוגן</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="בניין מגורים" /> בניין מגורים</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="מחסן" /> מחסן</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="חניה" /> חניה</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="קב' רכישה/זכות לנכס" /> קב' רכישה/זכות לנכס</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type3" type="checkbox" value="כללי" /> כללי</li>
+                                    @endif
                                 </ul>
                             </li>
                         </ul>
@@ -97,9 +148,7 @@
                 </div>
                 <div style="position: relative;margin-left :10px;">
                     <p style="margin-bottom: 8px">חדרים</p>
-                    <button class="click"
-                        style="background-color:white;border:1px solid #d0d5db; border-radius:3px; padding-top:5px;height:38px;color:#999"
-                        onclick="search_dropdown_toggle(2)">
+                    <button class="click search_btn_dd" name="2">
                         חדרים <i id="input2-icon" class="fas fa-chevron-down h-center"></i>
                     </button>
                     <div id="input_dropdown2" class="displaynone"
@@ -192,10 +241,6 @@
                 </div>
 
             </div>
-        
-
-
-
     </div>
 
     <div id="advancedSearch" class="m-auto form-group displaynone">
@@ -203,18 +248,33 @@
         <div>
             <div><p><strong>מאפייני דירה</strong></p></div>
             <div id="search-extras-wrapper" class="row">
-                <div  class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="A">מיזוג</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="B">סורגים</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="C">מעלית</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="D">מטבח כשר</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="E">גישה לנכים</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="F">משופצת</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="G">ממ"ד</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="H">מחסן</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="I">דלתות פנדור</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="J">מזגן תדיראן</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="K">ריהוט</div>
-                <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="L">יחידת דיור</div>
+                @if (array_key_exists('extras', $search_params))
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="A"  {{ in_array('A', $search_params['extras']) ? 'checked' :'' }} >מיזוג</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="B"  {{ in_array('B', $search_params['extras']) ? 'checked' :'' }} >סורגים</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="C"  {{ in_array('C', $search_params['extras']) ? 'checked' :'' }} >מעלית</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="D"  {{ in_array('D', $search_params['extras']) ? 'checked' :'' }} >מטבח כשר</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="E"  {{ in_array('E', $search_params['extras']) ? 'checked' :'' }} >גישה לנכים</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="F"  {{ in_array('F', $search_params['extras']) ? 'checked' :'' }} >משופצת</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="G"  {{ in_array('G', $search_params['extras']) ? 'checked' :'' }} >ממ"ד</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="H"  {{ in_array('H', $search_params['extras']) ? 'checked' :'' }} >מחסן</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="I"  {{ in_array('I', $search_params['extras']) ? 'checked' :'' }} >דלתות פנדור</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="J"  {{ in_array('J', $search_params['extras']) ? 'checked' :'' }} >מזגן תדיראן</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="K"  {{ in_array('K', $search_params['extras']) ? 'checked' :'' }} >ריהוט</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]"  value="L"  {{ in_array('L', $search_params['extras']) ? 'checked' :'' }} >יחידת דיור</div>
+                @else
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="A">מיזוג</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="B">סורגים</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="C">מעלית</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="D">מטבח כשר</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="E">גישה לנכים</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="F">משופצת</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="G">ממ"ד</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="H">מחסן</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="I">דלתות פנדור</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="J">מזגן תדיראן</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="K">ריהוט</div>
+                    <div class="col-sm-3 mb-1" ><input class="ml-1" type="checkbox" name="asset_extras[]" value="L">יחידת דיור</div>
+                @endif
             </div>
         </div>
 
@@ -249,7 +309,6 @@
                             <option value="11">
                             <option value="11.5">
                             <option value="12">
-
                         </datalist>
 
                     </div>
