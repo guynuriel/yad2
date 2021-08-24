@@ -25,7 +25,7 @@
             <div class="flex">
                 <div class="autocomplete" style="margin-left: 10px;">
                     <label class="f14" for="place">חפשו אזור, עיר, שכונה או רחוב</label>
-                    <input value="{{ array_key_exists('city', $query) ? $query['city'] :'' }}" type="text" style="width: 175px" class="form-control" name="place"
+                    <input value="{{ array_key_exists('city', $search_params) ? $search_params['city'] :'' }}" type="text" style="width: 175px" class="form-control" name="place"
                         id="city_search_autocomplete" placeholder="עיר מגורים" />
                 </div>
                 <div style="position: relative;margin-left:10px;">
@@ -43,15 +43,27 @@
                                     id="input1-d1-icon1" class="fas fa-chevron-down h-center"></i> </li>
                             <li id="input1_dropdown1" class="displaynone">
                                 <ul class="pr-0">
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירה" /> דירה</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירת גן" /> דירת גן</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="גג/פנטהאוז" /> גג / פנטהאוז</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דופלקס" /> דופלקס</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירת נופש" /> דירת נופש</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="מרתף/פרטר" /> מרתף/ פרטר</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="טריפלקס" /> טריפלקס</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="יחידת דיור" /> יחידת דיור</li>
-                                    <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="סטודיו/לופט" /> סטודיו / לופט</li>
+                                    @if (array_key_exists('assets_types', $search_params))
+                                        <li><input {{ in_array('דירה', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירה" /> דירה</li>
+                                        <li><input {{ in_array('דירת גן', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירת גן" /> דירת גן</li>
+                                        <li><input {{ in_array('גג/פנטהאוז', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="גג/פנטהאוז" /> גג / פנטהאוז</li>
+                                        <li><input {{ in_array('דופלקס', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דופלקס" /> דופלקס</li>
+                                        <li><input {{ in_array('דירת נופש', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירת נופש" /> דירת נופש</li>
+                                        <li><input {{ in_array('מרתף/פרטר', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="מרתף/פרטר" /> מרתף/ פרטר</li>
+                                        <li><input {{ in_array('טריפלקס', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="טריפלקס" /> טריפלקס</li>
+                                        <li><input {{ in_array('יחידת דיור', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="יחידת דיור" /> יחידת דיור</li>
+                                        <li><input {{ in_array('סטודיו/לופט', $search_params['assets_types']) ? 'checked' :'' }} name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="סטודיו/לופט" /> סטודיו / לופט</li>
+                                    @else
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירה" /> דירה</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירת גן" /> דירת גן</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="גג/פנטהאוז" /> גג / פנטהאוז</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דופלקס" /> דופלקס</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="דירת נופש" /> דירת נופש</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="מרתף/פרטר" /> מרתף/ פרטר</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="טריפלקס" /> טריפלקס</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="יחידת דיור" /> יחידת דיור</li>
+                                        <li><input name="search_asset_type[]" class="ml-1 asset-type1" type="checkbox" value="סטודיו/לופט" /> סטודיו / לופט</li>
+                                    @endif
                                 </ul>
                             </li>
                             <li><input id="search_asset_type2" class="ml-1 asset-type2" type="checkbox" value="2" /> בתים <i onclick="search_dropdown_toggle(1,2)"
@@ -96,7 +108,7 @@
 
                             <div style="border: 1px solid #ccc;border-radius: 1px;">
 
-                                <input {{ array_key_exists('rooms1', $query) ? 'value='.$query["rooms1"] :'' }} placeholder="מ-" id="search-rooms1" list="rooms1" style="width:72px; outline: none;border: 0;">
+                                <input {{ array_key_exists('rooms1', $search_params) ? 'value='.$search_params["rooms1"] :'' }} placeholder="מ-" id="search-rooms1" list="rooms1" style="width:72px; outline: none;border: 0;">
                                 <datalist  id="rooms1" style="width:75px;">
                                     <option value="1">
                                     <option value="1.5">
@@ -126,7 +138,7 @@
 
                             <div style="border: 1px solid #ccc;border-radius: 1px;width:75px;">
 
-                                <input {{ array_key_exists('rooms2', $query) ? 'value='.$query["rooms2"] :'' }} placeholder="עד-" list="rooms2" id="search-rooms2" style="width:72px; outline: none;border: 0;">
+                                <input {{ array_key_exists('rooms2', $search_params) ? 'value='.$search_params["rooms2"] :'' }} placeholder="עד-" list="rooms2" id="search-rooms2" style="width:72px; outline: none;border: 0;">
                                 <datalist id="rooms2" style="width:75px;">
                                     <option value="1">
                                     <option value="1.5">
@@ -160,9 +172,9 @@
                 <div style="width: 200px;margin-left:10px;">
                     <p style="margin-bottom: 8px">מחיר</p>
                     <div class="flex">
-                        <input {{ array_key_exists('price1', $query) ? 'value='.$query["price1"] :'' }} id="search-price1" type="text" style="width: 50%" class="form-control" name="start-price"
+                        <input {{ array_key_exists('price1', $search_params) ? 'value='.$search_params["price1"] :'' }} id="search-price1" type="text" style="width: 50%" class="form-control" name="start-price"
                             placeholder="ממחיר" />
-                        <input {{ array_key_exists('price2', $query) ? 'value='.$query["price2"] :'' }} type="text" id="search-price2" style="width: 50%" class="form-control" name="stop-price"
+                        <input {{ array_key_exists('price2', $search_params) ? 'value='.$search_params["price2"] :'' }} type="text" id="search-price2" style="width: 50%" class="form-control" name="stop-price"
                             placeholder="עד מחיר" />
                     </div>
                 </div>
@@ -214,7 +226,7 @@
                 <div class="flex">
                     <div style="border: 1px solid #ccc;border-radius: 1px; width:45%; margin-left:5px;">
 
-                        <input id="search-floor1" {{ array_key_exists('floor1', $query) ? 'value='.$query["floor1"] :'' }} placeholder="מ-" list="search_list_floor1" class="form-control">
+                        <input id="search-floor1" {{ array_key_exists('floor1', $search_params) ? 'value='.$search_params["floor1"] :'' }} placeholder="מ-" list="search_list_floor1" class="form-control">
                         <datalist id="search_list_floor1" style="width:75px;">
                             <option value="1">
                             <option value="1.5">
@@ -243,7 +255,7 @@
                     </div>
                     <div style="border: 1px solid #ccc;border-radius: 1px; width:45%;">
 
-                        <input id="search-floor2" {{ array_key_exists('floor2', $query) ? 'value='.$query["floor2"] :'' }}
+                        <input id="search-floor2" {{ array_key_exists('floor2', $search_params) ? 'value='.$search_params["floor2"] :'' }}
                          list="search_list_floor1" placeholder="עד-" class="form-control">
                         <datalist id="search_list_floor1" style="width:75px;">
                             <option value="1">
@@ -278,10 +290,10 @@
             <div class="col-sm-3">
                 <p>גודל דירה (במ"ר)</p>
                 <div class="flex">
-                    <input {{ array_key_exists('asset_size1', $query) ? 'value='.$query["asset_size1"] :'' }} id="search-asset_size1" type="text" style="width: 45%; margin-left: 5px" class="form-control"
+                    <input {{ array_key_exists('asset_size1', $search_params) ? 'value='.$search_params["asset_size1"] :'' }} id="search-asset_size1" type="text" style="width: 45%; margin-left: 5px" class="form-control"
                         placeholder="מ-" />
 
-                    <input {{ array_key_exists('asset_size2', $query) ? 'value='.$query["asset_size2"] :'' }} id="search-asset_size2" type="text" style="width: 45%" class="form-control"
+                    <input {{ array_key_exists('asset_size2', $search_params) ? 'value='.$search_params["asset_size2"] :'' }} id="search-asset_size2" type="text" style="width: 45%" class="form-control"
                         placeholder="עד-" />
                 </div>
             </div>
@@ -289,7 +301,7 @@
             <div class="col-sm-3">
                 <p>תאריך כניסה</p>
                 <div class="flex">
-                    <input {{ array_key_exists('entry_date', $query) ? 'value='.$query["entry_date"] :'' }} id="search-entry_date" type="text" class="form-control"
+                    <input {{ array_key_exists('entry_date', $search_params) ? 'value='.$search_params["entry_date"] :'' }} id="search-entry_date" type="text" class="form-control"
                         value="החל מ- הזינו תאריך" onfocus="(this.type='date')" />
 
                 </div>
@@ -297,7 +309,7 @@
             
             <div class="col-sm-2 flex" style="align-self: center; padding-top:40px;">
                 
-                <input {{ array_key_exists('entry_now', $query) ? 'checked' :'' }} id="search-entry_now" style="margin-left: 5px" type="checkbox" name="entry"> כניסה מיידית
+                <input {{ array_key_exists('entry_now', $search_params) ? 'checked' :'' }} id="search-entry_now" style="margin-left: 5px" type="checkbox" name="entry"> כניסה מיידית
             </div>
         </div>
         

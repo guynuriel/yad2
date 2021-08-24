@@ -1,4 +1,6 @@
-let search_asset_type_all = document.querySelector("#search_asset_type_all");
+
+
+const search_asset_type_all = document.querySelector("#search_asset_type_all");
 
 search_asset_type_all.addEventListener('change', function() {
     if($(this).is(':checked')){
@@ -76,14 +78,14 @@ search_asset_type3.addEventListener('change', function() {
 });
 
 
-let search_dropdown_toggle = function( input, dropnum = 0 ){
+let search_dropdown_toggle = function( input, dropNum = 0 ){
     
     // $('.collapse').toggle();
 
-    if(dropnum > 0){
+    if(dropNum > 0){
 
-        $('#input' + input + '_dropdown' + dropnum).toggle();
-        $('#input' + input + '-d' + dropnum + '-icon'+ dropnum).toggleClass('fa-chevron-up');
+        $('#input' + input + '_dropdown' + dropNum).toggle();
+        $('#input' + input + '-d' + dropNum + '-icon'+ dropNum).toggleClass('fa-chevron-up');
 
     }else{
         
@@ -146,11 +148,13 @@ function searchAndSort(){
 
     let assetsChecked = $('input[type="checkbox"][name="search_asset_type\\[\\]"]:checked').map(function() { return this.value; }).get();
     
-    p.sumOfAssetsType = assetsChecked.length;
+    p.assets_types = assetsChecked.length;
 
     for (let i = 0; i < assetsChecked.length; i++) {
         p['asset'+i] = assetsChecked[i];
     }
+
+
 
     for (let key in p) {
         if (p.hasOwnProperty(key)&& p[key]!='' ) {

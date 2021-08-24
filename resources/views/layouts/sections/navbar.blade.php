@@ -221,7 +221,7 @@
                 @else
                     
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form1" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                     <div class="center_content p-4" >
@@ -243,7 +243,7 @@
                         <a class="dropdown-item" href="#">חיפושים אחרונים</a>
                         @if (Auth::user())
                         <a class="dropdown-item text-center"  href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
+                        document.getElementById('logout-form1').submit();">
                         התנתקות
                         </a>
                         @endif
@@ -341,11 +341,11 @@
                     </a>
                     @else
                         <a id="logout_mobile_nav" href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
+                        document.getElementById('logout-form2').submit();">
                             התנתקות
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <form id="logout-form2" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                         <div class="center_content p-4" id="user_connected">
@@ -529,4 +529,8 @@
         $("#mobile_menu_dd" + num).toggle('slideDown');
         $("#mobile_menu_icon" + num).toggleClass('fa-chevron-up');
     }
+    $(".sidenav_toggle").click(function(e) {
+        e.stopPropagation();
+        $("#sidenav_wrapper").toggle("slide");
+    })
 </script>
