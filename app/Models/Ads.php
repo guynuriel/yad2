@@ -29,7 +29,11 @@ class Ads extends Model
 
     // return ads with user that like them
     public function favorites(){
+        
+        
         return $this->belongsToMany(User::class,'favorites','ad_id','user_id');
+        
+
     }
 
 

@@ -1,11 +1,16 @@
 @foreach ($ads as $ad)
+@php
+ $like_color = $ad->is_favorite === true ? '#ff7100' : 'gray';   
+@endphp
     <div class="single-ad-wrapper flex">
         <div id="min{{ $ad->id }}" onclick="toggle_ad_on_main__page({{ $ad->id }})"
             class="min-ad-wrapper flex">
             <div class="right_col flex">
 
                 <div class="feed_image_container">
-                    <div class="like-btn"></div>
+                    <a onclick="event.stopPropagation()" href="{{route('favorites.like',$ad->id)}}" class="like-btn center_content">
+                        <i style="color:{{$like_color}}" class="fas fa-heart"></i>
+                    </a>
                     @if (is_array($ad->images))
                         <div class="num_of_imgs displaynone">
                             @if ($ad->images[0][15] === 'v')
@@ -78,6 +83,9 @@
                 <div class="right-col flex">
                     <div class="image_container">
                         <div class="pic">
+                            <a onclick="event.stopPropagation()" href="{{route('favorites.like',$ad->id)}}" class="like-btn-max center_content">
+                                <i style="color:{{$like_color}}" class="fas fa-heart f15"></i>
+                            </a>
                             @if (is_array($ad->images))
                                 <div onclick="get_images(event);" class="num_of_imgs">
                                     @if ($ad->images[0][15] === 'v')
@@ -239,7 +247,8 @@
 
         {{-- ///////////////////// Mobile ///////////////////// --}}
 
-    <a class="mobile_ad_wrapper" href="/ads/{{ $ad->id }}">
+
+    <div class="mobile_ad_wrapper" onclick="redirectTo('/ads/{{$ad->id}}')" >
         <div class="mobile_ad">
             <div style="position: absolute; top: 10px; left: 10px;" >
                 <p class="color2">
@@ -251,8 +260,20 @@
                 </p>
             </div>
             <div style="width: 100%" class=" flex">
-                <div class="center_content p-3" style="width: 200px;">
-                    <img style="width: 100%;height:auto" src="{{ (is_array( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
+                <div class="center_content  p-2" style="width: 200px;position: relative;">
+                    <a onclick="event.stopPropagation()" href="{{route('favorites.like',$ad->id)}}" class="like-btn center_content">
+                        <i style="color:{{$like_color}}" class="fas fa-heart"></i>
+                    </a>
+                    @if (is_array($ad->images))
+                        <div class="num_of_imgs">
+                            @if ($ad->images[0][15] === 'v')
+                                <i class="far fa-film text-white f18"> {{ count($ad->images)}}</i>
+                            @else
+                                <i class="far fa-images text-white f18"> {{ count($ad->images)}}</i>
+                            @endif
+                        </div>
+                    @endif
+                    <img style="width: 100%;height:100%" src="{{ (is_array( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
                 </div>
                 <div style="width: calc(100% - 200px);">
                     <div>
@@ -289,5 +310,5 @@
                 </div>
             </div>
         </div>
-    </a>
+    </div>
 @endforeach

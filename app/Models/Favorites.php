@@ -9,10 +9,5 @@ class Favorites extends Model
 {
 
     protected $table = "favorites";
-    // public function ads(){
-    //     return $this->belongsToMany(Ads::class);
-    // }
-    // public function user(){
-    //     return $this->belongsToMany(User::class);
-    // }
+    public $timestamps = false;
 }

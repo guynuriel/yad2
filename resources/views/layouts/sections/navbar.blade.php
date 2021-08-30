@@ -200,8 +200,7 @@
                 <a class="nav-link" href="#"><i class="far fa-bell"></i> <span class="nav_text">התראות</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="/favorites" id="navbarDropdown" role="button" >
                     <i class="far fa-heart"></i> <span class="nav_text">מודעות שאהבתי</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -368,8 +367,10 @@
                         <p>התראות שלי</p>
                     </div>
                     <div class="item">
-                        <i class="far fa-heart f18"></i>
-                        <p>מודעות שאהבתי</p>
+                        <a class="nav-link" href="/favorites">
+                            <i class="far fa-heart f18"></i>
+                            <p class="">מודעות שאהבתי</p>
+                        </a>
                     </div>
                     <div class="item">
                         <i class="fas fa-search f18"></i>

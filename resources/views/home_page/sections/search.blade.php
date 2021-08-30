@@ -69,7 +69,7 @@
                 <div style="position: relative;margin-left:10px;">
                     <p style="margin-bottom: 8px">סוג הנכס</p>
                     <button class="click search_btn_dd" name="1">
-                        בחרו סוגי נכס <i id="input1-icon" class="fas fa-chevron-down h-center"></i>
+                        בחרו סוגי נכס <i name="1" id="input1-icon" class="fas fa-chevron-down h-center"></i>
                     </button>
                     <div id="input_dropdown1" class="displaynone"
                         style="position: absolute;top:70px;background-color:white;width: max-content;z-index: 9999;">
@@ -149,7 +149,7 @@
                 <div style="position: relative;margin-left :10px;">
                     <p style="margin-bottom: 8px">חדרים</p>
                     <button class="click search_btn_dd" name="2">
-                        חדרים <i id="input2-icon" class="fas fa-chevron-down h-center"></i>
+                        חדרים <i name="2" id="input2-icon" class="fas fa-chevron-down h-center"></i>
                     </button>
                     <div id="input_dropdown2" class="displaynone"
                         style="position: absolute;top:70px;right:-60px;background-color:white;width: max-content;z-index: 9999;padding: 15px; box-shadow: 0 2px 6px 0 rgb(0 0 0 / 10%);width: 182px;height: 60px;">

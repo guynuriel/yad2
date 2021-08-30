@@ -1,7 +1,6 @@
 @extends('layouts.yad2')
 
 @section('content')
-    <link href="{{ asset('css/home_page.css') }}" rel="stylesheet">
 
     @include('home_page.sections.search')
     <section class="flex">

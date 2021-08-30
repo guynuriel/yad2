@@ -41,7 +41,6 @@ $( document ).ready(function() {
 
 
 
-
 function toggle_ad_on_main__page(id){
 
     $('#max'+id).toggle()
@@ -59,8 +58,8 @@ $('.contact-seller-btn').click (function(e){
 var isMoreAds = true;
 // -------   pagination
 function infiniteScrollPagination(page) {
-    if (window.isMoreAds) {
 
+    if (window.isMoreAds) {
         // check if exists params in the url and add them to the ajax
         let urlSearchParams = new URLSearchParams(window.location.search);
         let params = Object.fromEntries(urlSearchParams.entries());
@@ -99,9 +98,6 @@ function infiniteScrollPagination(page) {
             error: function(jqXHR) {
                 $('#ajax-load').html("טעינת מודעות נוספות נכשלה")
             },
-            complete: function() {
-
-            }
         })
 
     } else {
@@ -111,7 +107,7 @@ function infiniteScrollPagination(page) {
 
 var page = 1;
 
-$(window).scroll(function() {
+$(window).scroll(function () {
     if (($(window).scrollTop() + $(window).height()) >= $(document).height()) {
         page++;
         infiniteScrollPagination(page);
@@ -169,3 +165,7 @@ $("#images_popup").click(function() {
     $(".slideshow-container").empty();
     $(".slideshow-container").html('<a class="prev" onclick="plusSlides(-1)">&#10094;</a><a class="next" onclick="plusSlides(1)">&#10095;</a>');
 });
+
+function redirectTo(url){
+    window.location.href = url;
+}

@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-// use Illuminate\Support\Facades\Auth;
+
+// use Illuminate\Support\Facades\Auth;/ads/favorites
 // use Illuminate\Support\Facades\DB;
 use App\Models\Ads;
+use App\Models\User;
 use Barryvdh\Debugbar\Facade as DebugBar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 //  return User::with('user_info')->get();
 //  Debugbar::info('');
@@ -20,7 +23,11 @@ class AdsController extends Controller
     // תצוגת דף הבית
     public function index(Request $request)
     {
+        
         $search_params = $this->organize_search_params($request->all());
+        // if(Auth::check()){
+        //     Debugbar::info( Ads::with('favorites')->where('favorites')->get()->favorites);
+        // }
 
         // search progress
         if (request('search') === 't') {
@@ -31,15 +38,38 @@ class AdsController extends Controller
             $ads = Ads::latest()->paginate(8);
         }
 
+        if (Auth::check()) {
+
+            $user = Auth::user()->id;
+            $favorites_ads = User::with('favorites')->findOrFail($user)->favorites;
+            foreach ($ads as $ad){
+                $added = false;
+                foreach($favorites_ads as $favor){
+                    if($ad->id == $favor->id){
+                        $ad->is_favorite = true;
+                        $added = true;
+                        break;
+                    }
+                }
+                if(!$added)
+                    $new[] = $ad;
+
+            }
+           
+        }
+        
+
+        Debugbar::info($ads[0]->is_favorite);
+
+
+
         // Infinite Scroll Pagination
         if ($request->ajax()) {
             $view = view('home_page.sections.feed', compact('ads'))->render();
             return response()->json(['html' => $view]);
         }
 
-        
         // normal progress
-        Debugbar::info($search_params);
         return view('home_page.index', ['ads' => $ads, 'search_params' => $search_params]);
 
     }
@@ -165,11 +195,11 @@ class AdsController extends Controller
         }
 
         if (array_key_exists('assets_types', $search_params)) {
-            $ads = $this->check_asset_type($ads , $search_params['assets_types']);
+            $ads = $this->check_asset_type($ads, $search_params['assets_types']);
         }
 
         if (array_key_exists('extras', $search_params)) {
-            $ads = $this->check_asset_extras($ads,$search_params['extras']);
+            $ads = $this->check_asset_extras($ads, $search_params['extras']);
         }
 
         if (array_key_exists('floor1', $search_params)) {
@@ -184,10 +214,10 @@ class AdsController extends Controller
             $ads = $this->is_smaller($ads, 'total_asset_size', $search_params['asset_size1']);
         }
 
-        if (array_key_exists('asset_size2', $search_params)){
+        if (array_key_exists('asset_size2', $search_params)) {
             $ads = $this->is_bigger($ads, 'total_asset_size', $search_params['asset_size2']);
         }
-        
+
         if (array_key_exists('entry_date', $search_params) || array_key_exists('entry_now', $search_params)) {
             $ads = $this->check_entry_date($ads);
         }
@@ -211,7 +241,7 @@ class AdsController extends Controller
         $ads = $ads->where($col, '>=', (int) $val);
         return $ads;
     }
-    public function check_asset_type($ads ,$params)
+    public function check_asset_type($ads, $params)
     {
         $ads = $ads->where(function ($ads) use ($params) {
             foreach ($params as $key => $value) {
@@ -222,7 +252,7 @@ class AdsController extends Controller
         return $ads;
     }
 
-    public function check_asset_extras($ads,$query)
+    public function check_asset_extras($ads, $query)
     {
         $ads = $ads->whereJsonContains('asset_extras', $query);
 
@@ -254,8 +284,7 @@ class AdsController extends Controller
             $params['extras'] = $extras;
         }
 
-
-        if(array_key_exists('assets_types', $params)){
+        if (array_key_exists('assets_types', $params)) {
             $assets_types = [];
             for ($i = 0; $i < $params['assets_types']; $i++) {
                 $assets_types[] = $params['asset' . $i];
@@ -263,7 +292,7 @@ class AdsController extends Controller
             }
             $params['assets_types'] = $assets_types;
         }
-        
+
         return $params;
         // Debugbar::info();
     }
