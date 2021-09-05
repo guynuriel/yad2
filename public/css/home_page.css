@@ -289,6 +289,8 @@ position: relative;
     text-align: center;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
     width: 180px;
+    position: relative;
+    z-index: 9999;
 }
 .max-header .contacts_dtl hr{
     margin: 0;

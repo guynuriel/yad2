@@ -3,8 +3,8 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{{ route('index') }}"><img width="90"
-            src="{{ asset('images/logos/yad2Logo.png') }}" alt="logo"></a>
+    <a class="navbar-brand" href="{{ route('index') }}"><img width="90" src="{{ asset('images/logos/yad2Logo.png') }}"
+            alt="logo"></a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav justify-content-center main-nav-ul">
@@ -200,66 +200,110 @@
                 <a class="nav-link" href="#"><i class="far fa-bell"></i> <span class="nav_text">התראות</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link" href="/favorites" id="navbarDropdown" role="button" >
+                <a class="nav-link" href="/favorites" id="navbarDropdown" role="button">
                     <i class="far fa-heart"></i> <span class="nav_text">מודעות שאהבתי</span>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div style="{{Auth::guest()?'right: -50px':'right: -176px'}};" class="dropdown-menu"
+                    aria-labelledby="navbarDropdown">
+
+                    @if (Auth::guest())
                     <div class="p-3">
                         <h3 class="text-center">מודעות שאהבתי</h3>
                         <p class="text-center">הרשימה שלך עדיים ריקה אפשר<br> להוסיף מודעות לרשימה בלחיצה על
                             <br>הסימן בפינה הימנית של כל מודעה
                         </p>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                @if (Auth::guest())
-                    <a class="nav-link click" onclick="showPopup('login_popup')" href="javascript:void(0)" id="navbarDropdown" >
-                        <i class="far fa-user"></i> <span class="nav_text">התחברות</span>
-                    </a>
-                @else
-                    
+                    @else
+                    @php
+                    $favo_loop = 0;
+                    @endphp
+                    @foreach ($ads as $ad)
+                    @if ($ad->is_favorite && $favo_loop < 3) @php $favo_loop++; @endphp <div
+                        onclick="redirectTo('/ads/{{$ad->id}}')" style="height: 80px;"
+                        class="flex click hover-shadow center_content">
+                        <div style="width:100px;">
+                            <img width="100" class="px-2" src="{{$ad->images[0]}}" alt="" srcset="">
+                        </div>
+                        <div style="width:200px;">
+                            <div>
+                                <span class="f16">
+                                    {{ $ad->address_name }}
+                                    {{ $ad->address_num }}
+                                </span>
 
-                    <form id="logout-form1" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                    <div class="center_content p-4" >
-                        <div style="color: #ff7100;
+                            </div>
+                            <div>
+                                <p class="mb-0">
+                                    <span class="f14">{{ $ad->asset_type }}</span>, <span
+                                        class="f14">{{ $ad->neighborhood }}</span>, <span class="f14">{{ $ad->city }}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div style="width:100px;">
+                            <p class="mb-0 mt-3">{{ $ad->price }} ₪</p>
+                        </div>
+                </div>
+                <hr class="m-0">
+                @elseif($favo_loop >= 3)
+                @break
+                @endif
+
+                @endforeach
+                <div class="center_content mt-2">
+                    <a id="go_to_favo_page_btn" href="/favorites">לכל המודעות שסימנתי</a>
+                </div>
+                @endif
+    </div>
+    </li>
+    <li class="nav-item dropdown">
+        @if (Auth::guest())
+        <a class="nav-link click" onclick="showPopup('login_popup')" href="javascript:void(0)" id="navbarDropdown">
+            <i class="far fa-user"></i> <span class="nav_text">התחברות</span>
+        </a>
+        @else
+
+
+        <form id="logout-form1" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+        <div class="center_content p-4">
+            <div style="color: #ff7100;
                         background-color:#fff1e5;
                         width:40px;
                         height:40px;
                         line-height: 25px;
                         border-radius: 30px;" class="user center_content f30">{{ Auth::user()->name[0] }}</div>
-                        <div class="mr-2">
-                            <p class="m-0 color1"><strong>{{ Auth::user()->name }}</strong></p>
-                        </div>
-                    </div>
-                @endif
+            <div class="mr-2">
+                <p class="m-0 color1"><strong>{{ Auth::user()->name }}</strong></p>
+            </div>
+        </div>
+        @endif
 
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <div>
-                        <a class="dropdown-item" href="#">השוואת מחירים</a>
-                        <a class="dropdown-item" href="#">חיפושים אחרונים</a>
-                        @if (Auth::user())
-                        <a class="dropdown-item text-center"  href="{{ route('logout') }}" onclick="event.preventDefault();
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div>
+                <a class="dropdown-item" href="#">השוואת מחירים</a>
+                <a class="dropdown-item" href="#">חיפושים אחרונים</a>
+                @if (Auth::user())
+                <a class="dropdown-item text-center" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form1').submit();">
-                        התנתקות
-                        </a>
-                        @endif
-                    </div>
-                </div>
-            </li>
-            @if (Auth::user())
-            <li class="new-post-btn">
-                <a class="nav-link" href="{{ route('ads.create') }}">+ פרסום מודעה חדשה</a>
-            </li>
-            @else
-            
-            <li class="new-post-btn">
-                <a class="nav-link" onclick="showPopup('login_popup')" href="javascript:void(0)">+ פרסום מודעה חדשה</a>
-            </li>
-            @endif
-        </ul>
+                    התנתקות
+                </a>
+                @endif
+            </div>
+        </div>
+    </li>
+    @if (Auth::user())
+    <li class="new-post-btn">
+        <a class="nav-link" href="{{ route('ads.create') }}">+ פרסום מודעה חדשה</a>
+    </li>
+    @else
+
+    <li class="new-post-btn">
+        <a class="nav-link" onclick="showPopup('login_popup')" href="javascript:void(0)">+ פרסום מודעה חדשה</a>
+    </li>
+    @endif
+    </ul>
     </div>
 </nav>
 
@@ -339,21 +383,21 @@
                         </div>
                     </a>
                     @else
-                        <a id="logout_mobile_nav" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a id="logout_mobile_nav" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form2').submit();">
-                            התנתקות
-                        </a>
+                        התנתקות
+                    </a>
 
-                        <form id="logout-form2" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                        <div class="center_content p-4" id="user_connected">
-                            <div class="user f30">{{ Auth::user()->name[0] }}</div>
-                            <div class="mr-2">
-                                <p class="m-0 color1"><strong>{{ Auth::user()->name }}</strong></p>
-                                <p class="m-0 f12 color1">לאזור האישי</p>
-                            </div>
+                    <form id="logout-form2" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    <div class="center_content p-4" id="user_connected">
+                        <div class="user f30">{{ Auth::user()->name[0] }}</div>
+                        <div class="mr-2">
+                            <p class="m-0 color1"><strong>{{ Auth::user()->name }}</strong></p>
+                            <p class="m-0 f12 color1">לאזור האישי</p>
                         </div>
+                    </div>
                     @endif
                 </div>
                 <div class="row2 center_content ">

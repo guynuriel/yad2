@@ -21,7 +21,9 @@ class FavoritesController extends Controller
     {
         $user = Auth::user()->id;
         $favorites = User::with('favorites')->findOrFail($user)->favorites;
-
+        foreach ($favorites as $favo){
+            $favo->is_favorite = true;         
+        }
         return view('ads.favorites')->with('ads', $favorites);
         
     }

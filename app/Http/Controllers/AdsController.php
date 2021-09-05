@@ -51,8 +51,6 @@ class AdsController extends Controller
                         break;
                     }
                 }
-                if(!$added)
-                    $new[] = $ad;
 
             }
            
@@ -77,14 +75,23 @@ class AdsController extends Controller
     // תצוגת מודעה ספציפית
     public function show($id)
     {
+        $ads = $this->favorites_in_ads();
+              
         $ad = Ads::findOrFail($id);
-        return view('ads.show', ['ad' => $ad]);
+        return view('ads.show', [
+            'ad' => $ad,
+            'ads' => $ads
+        ]);
     }
 
     // עמוד יצירת מודעה
     public function create()
     {
-        return view('ads.create');
+
+        $ads = $this->favorites_in_ads();
+        return view('ads.create',[
+            'ads' => $ads
+        ]);
     }
 
     //  שמירת מודעה
@@ -295,5 +302,27 @@ class AdsController extends Controller
 
         return $params;
         // Debugbar::info();
+    }
+    private function favorites_in_ads(){
+        $ads = [];
+        if (Auth::check()) {
+            $ads = Ads::latest()->get();
+            $user = Auth::user()->id;
+            $favorites_ads = User::with('favorites')->findOrFail($user)->favorites;
+            foreach ($ads as $ad){
+                $added = false;
+                foreach($favorites_ads as $favor){
+                    if($ad->id == $favor->id){
+                        $ad->is_favorite = true;
+                        $added = true;
+                        break;
+                    }
+                }
+
+            }
+           
+        }
+        return $ads;
+
     }
 }

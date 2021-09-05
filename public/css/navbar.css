@@ -92,7 +92,18 @@
     padding-top: 3px;
 }
 
-
+#go_to_favo_page_btn{
+	border: 1px solid #ff7100;
+	color:#ff7100;
+	text-decoration: none;
+	padding: 6px 12px;
+	border-radius: 3px;
+	font-weight: bolder;
+}
+#go_to_favo_page_btn:hover{
+	color: white;
+	background-color: #ff7100;
+}
 /*  -------------  מובייל  --------------  */
 
 #mobile_nav{
