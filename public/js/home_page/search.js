@@ -1,16 +1,16 @@
 const search_asset_type_all = document.querySelector("#search_asset_type_all");
 
-search_asset_type_all.addEventListener('change', function() {
-    if($(this).is(':checked')){
+search_asset_type_all.addEventListener('click', function() {
+    if($(this)[0].isChecked){
 
-        $("input.asset-type1[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+        $("custom-checkbox.asset-type1").each(function() {
+            $(this)[0].check();
         });
-        $("input.asset-type2[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+        $("custom-checkbox.asset-type2").each(function() {
+            $(this)[0].check();
         });
-        $("input.asset-type3[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+        $("custom-checkbox.asset-type3").each(function() {
+            $(this)[0].check();
         });
 
 
@@ -18,14 +18,15 @@ search_asset_type_all.addEventListener('change', function() {
     }else{
 
 
-        $("input.asset-type1[type=checkbox]").each(function() {
-            $(this).attr('checked', false);
+        $("custom-checkbox.asset-type1").each(function () {
+            
+            $(this)[0].uncheck();
         });
-        $("input.asset-type2[type=checkbox]").each(function() {
-            $(this).attr('checked', false);
+        $("custom-checkbox.asset-type2").each(function() {
+            $(this)[0].uncheck();
         });
-        $("input.asset-type3[type=checkbox]").each(function() {
-            $(this).attr('checked', false);
+        $("custom-checkbox.asset-type3").each(function() {
+            $(this)[0].uncheck();
         });
         
     } 
@@ -34,42 +35,43 @@ search_asset_type_all.addEventListener('change', function() {
 
 const search_asset_type1 = document.querySelector("#search_asset_type1");
 
-search_asset_type1.addEventListener('change', function() {
-    if($(this).is(':checked')){
-        $("input.asset-type1[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+search_asset_type1.addEventListener('click', function() {
+    if($(this)[0].isChecked){
+        $("custom-checkbox.asset-type1").each(function() {
+            $(this)[0].check();
         });
     }else{
-        $("input.asset-type1[type=checkbox]").each(function() {
-            $(this).attr('checked', false);
+        $("custom-checkbox.asset-type1").each(function() {
+            $(this)[0].uncheck();
         });        
     } 
 
 });
 const search_asset_type2 = document.querySelector("#search_asset_type2");
 
-search_asset_type2.addEventListener('change', function() {
-    if($(this).is(':checked')){
-        $("input.asset-type2[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+search_asset_type2.addEventListener('click', function () {
+    
+    if($(this)[0].isChecked){
+        $("custom-checkbox.asset-type2").each(function () {
+            $(this)[0].check();
         });
     }else{
-        $("input.asset-type2[type=checkbox]").each(function() {
-            $(this).attr('checked', false);
+        $("custom-checkbox.asset-type2").each(function () {
+            $(this)[0].uncheck();
         });        
     } 
 
 });
 const search_asset_type3 = document.querySelector("#search_asset_type3");
 
-search_asset_type3.addEventListener('change', function() {
-    if($(this).is(':checked')){
-        $("input.asset-type3[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+search_asset_type3.addEventListener('click', function() {
+    if($(this)[0].isChecked){
+        $("custom-checkbox.asset-type3").each(function() {
+            $(this)[0].check();
         });
     }else{
-        $("input.asset-type3[type=checkbox]").each(function() {
-            $(this).attr('checked', false);
+        $("custom-checkbox.asset-type3").each(function() {
+            $(this)[0].uncheck();
         });        
     } 
 
@@ -77,32 +79,34 @@ search_asset_type3.addEventListener('change', function() {
 
 
 
-$(document).ready(function(){
-    if (search_asset_type_all.checked) {
-        $("input.asset-type1[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+$(document).ready(function () {
+    // debugger
+    if (search_asset_type_all.isChecked) {
+        
+        $("custom-checkbox.asset-type1").each(function () {
+            $(this)[0].check();
         });
-        $("input.asset-type2[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+        $("custom-checkbox.asset-type2").each(function(i) {
+            $(this)[0].check();
         });
-        $("input.asset-type2[type=checkbox]").each(function() {
-            $(this).attr('checked', true);
+        $("custom-checkbox.asset-type2").each(function(i) {
+            $(this)[0].check();
         });
     }else {
         
-        if (search_asset_type1.checked) {
-            $("input.asset-type1[type=checkbox]").each(function() {
-                $(this).attr('checked', true);
+        if (search_asset_type1.isChecked) {
+            $("custom-checkbox.asset-type1").each(function() {
+                $(this)[0].check();
             });
         }
-        if (search_asset_type2.checked) {
-            $("input.asset-type2[type=checkbox]").each(function() {
-                $(this).attr('checked', true);
+        if (search_asset_type2.isChecked) {
+            $("custom-checkbox.asset-type2").each(function() {
+                $(this)[0].check();
             });
         }
-        if (search_asset_type3.checked) {
-            $("input.asset-type3[type=checkbox]").each(function() {
-                $(this).attr('checked', true);
+        if (search_asset_type3.isChecked) {
+            $("custom-checkbox.asset-type3").each(function() {
+                $(this)[0].check();
             });
         }
     }
@@ -188,30 +192,38 @@ function searchAndSort(){
         price2: $('#search-price2').val(),
     };
 
-    p["entry_now"] = $('#search-entry_now').is(':checked')?true:false;          
+    p["entry_now"] = $('#search-entry_now')[0].isChecked;          
     if($('#search-entry_date').val()  !=="החל מ- הזינו תאריך")
         p["entry_date"] = $('#search-entry_date').val();
     
     
     
-    let extras = $("#search-extras-wrapper input:checkbox:checked").map(function(){
-        return $(this).val();
-    }).get(); // <----
-    if(extras.length>0)
-    {
-        let i = 0;
-        p['extras'] = extras.length;
-        extras.forEach(e => {
-            p['extra'+i] = e;
+    let extrasInputs = [...document.querySelectorAll('custom-checkbox[name="asset_extras\\[\\]"]')];
+    let i = 0;
+    extrasInputs.forEach(e => {
+       
+        if (e.isChecked) {
+            p['extra'+i] = e.getAttribute('value');
             i++;
-        });
-    }
-    p.asset_type_all = search_asset_type_all.checked ? 't':'';
-    p.asset_type1 = search_asset_type1.checked ? 't':'';
-    p.asset_type2 = search_asset_type2.checked ? 't':'';
-    p.asset_type3 = search_asset_type3.checked ? 't':'';
-    let assetsChecked = $('input[type="checkbox"][name="search_asset_type\\[\\]"]:checked').map(function() { return this.value; }).get();
+        }
+        
+    });
+    p['extras'] = i;
     
+    p.asset_type_all = search_asset_type_all.isChecked ? 't':'';
+    p.asset_type1 = search_asset_type1.isChecked ? 't':'';
+    p.asset_type2 = search_asset_type2.isChecked ? 't':'';
+    p.asset_type3 = search_asset_type3.isChecked ? 't' : '';
+
+
+    let assetsInputs = [...document.querySelectorAll('custom-checkbox[name="search_asset_type\\[\\]"]')];
+    let assetsChecked = [];
+    for (let i = 0; i < assetsInputs.length; i++) {
+        if (assetsInputs[i].isChecked) {
+            assetsChecked.push(assetsInputs[i].getAttribute("value"));
+        }    
+    }
+
     p.assets_types = assetsChecked.length;
 
     for (let i = 0; i < assetsChecked.length; i++) {

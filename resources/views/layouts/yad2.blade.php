@@ -74,7 +74,7 @@
     <script src="{{ asset('js/cities_addresses_data/addressesArray.js') }}" defer></script>
     @endif
 
-
+    <script type="text/javascript" src="{{ asset('js/HTML_Custom/checkbox.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/cities_addresses_data/citiesArray.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/cities_addresses_data/logic.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/login_register.js') }}" defer></script>

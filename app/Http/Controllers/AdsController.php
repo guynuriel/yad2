@@ -57,7 +57,6 @@ class AdsController extends Controller
         }
         
 
-        Debugbar::info($ads[0]->is_favorite);
 
 
 
