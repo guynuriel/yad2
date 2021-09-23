@@ -295,7 +295,7 @@
     </li>
     @if (Auth::user())
     <li class="new-post-btn">
-        <a class="nav-link" href="{{ route('ads.create') }}">+ פרסום מודעה חדשה</a>
+        <a class="nav-link no_select"  href="{{ route('ads.create') }}">+ פרסום מודעה חדשה</a>
     </li>
     @else
 

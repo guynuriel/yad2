@@ -1,10 +1,15 @@
 const template = document.createElement('template');
 template.innerHTML = `
 <style>
+    .checkbox_container{
+        display: flex;
+        line-height: 17px;
+    }
     #check_wrapper{
         width: 16px;
         height: 16px;
         border: 1px solid black;
+        margin-left:5px;
     }
     #check_wrapper:hover{
         border:1px solid #ff7100;
@@ -15,12 +20,21 @@ template.innerHTML = `
         margin: 0;
         text-align: center;
         line-height: 17px;
+        
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+        supported by Chrome, Edge, Opera and Firefox */
     }
 </style>
 
 
-<div>
+<div class="checkbox_container">
     <div id="check_wrapper"><p class="check">&#10004</p></div>
+    <span class="label"> <slot /> </span>
 </div>        
 
 `;
