@@ -31,8 +31,15 @@ class AdsController extends Controller
 
         // search progress
         if (request('search') === 't') {
-            $ads = Ads::latest()->get();
-            $ads = $this->search_form(Ads::latest(), $search_params);
+            if(array_key_exists('price-up', $search_params)){
+                $ads = Ads::orderBy('price', 'asc');
+            }else if(array_key_exists('price-down', $search_params)){
+                $ads = Ads::orderBy('price', 'desc');
+            }
+            else {
+                $ads = Ads::latest();
+            }
+            $ads = $this->search_form($ads, $search_params);
             $ads = $ads->paginate(8);
         } else {
             $ads = Ads::latest()->paginate(8);
@@ -228,6 +235,13 @@ class AdsController extends Controller
             $ads = $this->check_entry_date($ads);
         }
 
+        if (array_key_exists('with_price', $search_params)) {
+            $ads = $this->check_if_exist($ads,'price');
+        }
+        if (array_key_exists('with_image', $search_params)) {
+            $ads = $this->check_if_exist($ads,'images');
+        }
+
         return $ads;
 
     }
@@ -274,6 +288,11 @@ class AdsController extends Controller
             $ads = $ads->where('entry_date', '>=', request('entry_date'));
         }
 
+        return $ads;
+    }
+
+    public function check_if_exist($ads,$col){
+        $ads = $ads->where($col, '!=', null);
         return $ads;
     }
 

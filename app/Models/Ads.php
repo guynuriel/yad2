@@ -83,23 +83,27 @@ class Ads extends Model
 
         for($i = 1 ; $i <= 11 ; $i++){
             if(request('image_upload_'.$i))
-                $images_files[] = request('image_upload_'.$i);
+                {$images_files[] = request('image_upload_'.$i);}
         }
         $images_url=[];
         $destinationPath = public_path('/images/upload');
         
         $num = 1;
-        foreach($images_files as $image){
-            if($image->getClientOriginalExtension()==='mp4'){
-                $new_name = 'v'.$num.time() . '.' . $image->getClientOriginalExtension();
-            }else{
-                $new_name = $num.time() . '.' . $image->getClientOriginalExtension();
+        if(!empty($images_files)){
+            foreach($images_files as $image){
+                if($image->getClientOriginalExtension()==='mp4'){
+                    $new_name = 'v'.$num.time() . '.' . $image->getClientOriginalExtension();
+                }else{
+                    $new_name = $num.time() . '.' . $image->getClientOriginalExtension();
+                }
+                
+                $image->move($destinationPath, $new_name);
+                
+                $images_url[]= "/images/upload/".$new_name;
+                $num++;
             }
-            
-            $image->move($destinationPath, $new_name);
-            
-            $images_url[]= "/images/upload/".$new_name;
-            $num++;
+        }else {
+            $images_url = null;
         }
 
         $ad->category = "selling";

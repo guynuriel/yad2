@@ -11,7 +11,7 @@
                     <a onclick="event.stopPropagation()" href="{{route('favorites.like',$ad->id)}}" class="like-btn center_content">
                         <i style="color:{{$like_color}}" class="fas fa-heart"></i>
                     </a>
-                    @if (is_array($ad->images))
+                    @if (!empty($ad->images))
                         <div class="num_of_imgs displaynone">
                             @if ($ad->images[0][15] === 'v')
                                 <i class="far fa-film text-white f18"> {{ count($ad->images)}}</i>
@@ -20,7 +20,7 @@
                             @endif
                         </div>
                     @endif
-                    <img class="feed_image" src="{{ (is_array( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
+                    <img class="feed_image" src="{{ (!empty( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
                 </div>
 
                 <div class="addresses">
@@ -86,7 +86,7 @@
                             <a onclick="event.stopPropagation()" href="{{route('favorites.like',$ad->id)}}" class="like-btn-max center_content">
                                 <i style="color:{{$like_color}}" class="fas fa-heart f15"></i>
                             </a>
-                            @if (is_array($ad->images))
+                            @if (!empty($ad->images))
                                 <div onclick="get_images(event);" class="num_of_imgs">
                                     @if ($ad->images[0][15] === 'v')
                                         <i ad_id="{{ $ad->id }}" class="far fa-film text-white f18"> {{ count($ad->images)}}</i>
@@ -95,7 +95,7 @@
                                     @endif
                                 </div>
                             @endif
-                            <img ad_id="{{ $ad->id }}" onclick="get_images(event);" class="popup_images" src="{{ (is_array( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
+                            <img ad_id="{{ $ad->id }}" onclick="get_images(event);" class="popup_images" src="{{ (!empty( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
                         </div>
                     </div>
                     <div class="m-2">
@@ -264,7 +264,7 @@
                     <a onclick="event.stopPropagation()" href="{{route('favorites.like',$ad->id)}}" class="like-btn center_content">
                         <i style="color:{{$like_color}}" class="fas fa-heart"></i>
                     </a>
-                    @if (is_array($ad->images))
+                    @if (!empty($ad->images))
                         <div class="num_of_imgs">
                             @if ($ad->images[0][15] === 'v')
                                 <i class="far fa-film text-white f18"> {{ count($ad->images)}}</i>
@@ -273,7 +273,7 @@
                             @endif
                         </div>
                     @endif
-                    <img style="width: 100%;height:100%" src="{{ (is_array( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
+                    <img style="width: 100%;height:100%" src="{{ (!empty( $ad->images)&&  $ad->images[0][15]!== 'v')? asset($ad->images[0]): asset('/images/upload/image_placeholder.png') }}">
                 </div>
                 <div style="width: calc(100% - 200px);">
                     <div>

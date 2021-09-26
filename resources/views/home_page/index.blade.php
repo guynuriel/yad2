@@ -5,7 +5,9 @@
     @include('home_page.sections.search')
     <section class="flex">
         <div class="feed_items">
-            
+
+            @include('home_page.sections.filter')
+            <br>
             @include('home_page.sections.feed')
            
         </div>
