@@ -14,7 +14,7 @@
 
         <div style="width: 800px;margin:auto">
 
-            <form style="display: grid;" action="{{ route('ads.store') }}" method="POST" enctype="multipart/form-data">
+            <form autocomplete="off" style="display: grid;" action="{{ route('ads.store') }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
                 {{-- --    --------------            חלק 1            -------------- --}}
