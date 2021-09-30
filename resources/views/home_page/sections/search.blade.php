@@ -68,13 +68,13 @@
         <div class="flex">
             <div class="autocomplete" style="margin-left: 10px;">
                 <label class="f14" for="place">חפשו אזור, עיר, שכונה או רחוב</label>
-                <input value="{{ array_key_exists('city', $search_params) ? $search_params['city'] :'' }}" type="text"
+                <input autocomplete="off" value="{{ array_key_exists('city', $search_params) ? $search_params['city'] :'' }}" type="text"
                     style="width: 175px" class="form-control" name="place" id="city_search_autocomplete"
                     placeholder="עיר מגורים" />
             </div>
             <div style="position: relative;margin-left:10px;">
                 <p style="margin-bottom: 8px">סוג הנכס</p>
-                <button class="click search_btn_dd" name="1">
+                <button style="min-width: 115px;" id="asset-type-btn" class="click search_btn_dd" name="1">
                     בחרו סוגי נכס <i name="1" id="input1-icon" class="fas fa-chevron-down h-center"></i>
                 </button>
                 <div id="input_dropdown1" class="displaynone"
@@ -88,8 +88,10 @@
                         </li>
                         <li class="flex">
                             <custom-checkbox {{ array_key_exists('asset_type1', $search_params) ? 'checked' :'' }}
-                                id="search_asset_type1" class="center_content asset-type1 ml-1"
-                                name="search_asset_type[]" value="1">דירות</custom-checkbox> <i id="input1-d1-icon1"
+                                id="search_asset_type1" class="center_content asset-type1 ml-1" name="search_asset_type[]"
+                                value="1">דירות</custom-checkbox>
+                                <span id="asset_type_checks1" class="f14 color2 bold mr-1"></span>
+                                <i id="input1-d1-icon1"
                                 onclick="search_dropdown_toggle(1,1)" class="fas fa-chevron-down h-center mr-1"></i>
                         </li>
                         <li id="input1_dropdown1" class="displaynone input_dropdown">
@@ -190,10 +192,10 @@
                             </ul>
                         </li>
                         <li class="flex">
-                            <custom-checkbox value="2" id="search_asset_type2" class="center_content asset-type2 ml-1"
-                                name="search_asset_type[]"
+                            <custom-checkbox name="search_asset_type[]" value="2" id="search_asset_type2" class="center_content asset-type2 ml-1"
                                 {{ array_key_exists('asset_type2', $search_params) ? 'checked' :'' }}>בתים
                             </custom-checkbox>
+                            <span id="asset_type_checks2" class="f14 color2 bold mr-1"></span>
                             <i onclick="search_dropdown_toggle(1,2)" id="input1-d2-icon2"
                                 class="fas fa-chevron-down h-center mr-1"></i>
                         </li>
@@ -245,10 +247,10 @@
                             </ul>
                         </li>
                         <li class="flex">
-                            <custom-checkbox id="search_asset_type3" class="center_content asset-type3 ml-1"
-                                name="search_asset_type[]"
+                            <custom-checkbox name="search_asset_type[]" id="search_asset_type3" class="center_content asset-type3 ml-1"
                                 {{ array_key_exists('asset_type3', $search_params) ? 'checked' :'' }} value="3">
                                 סוגים נוספים</custom-checkbox>
+                            <span id="asset_type_checks3" class="f14 color2 bold mr-1"></span>
                             <i onclick="search_dropdown_toggle(1,3)" id="input1-d3-icon3"
                                 class="fas fa-chevron-down h-center mr-1"></i>
                         </li>

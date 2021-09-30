@@ -47,7 +47,6 @@ class yad2CheckBox extends HTMLElement{
 
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(template.content.cloneNode(true));
-
         if (this.getAttribute('checked') != null) {
             this.toggleCheck();
         }
@@ -83,6 +82,14 @@ class yad2CheckBox extends HTMLElement{
         icon.style.display = 'none';
         check_div.style.borderColor = 'black';
         check_div.style.backgroundColor = '#fff';
+    }
+
+    showMinus() {
+        this.shadowRoot.querySelector('#check_wrapper > .check').innerHTML = '&#9866';
+    }
+
+    showV() {
+        this.shadowRoot.querySelector('#check_wrapper > .check').innerHTML = '&#10004';
     }
     connectedCallback() {
         this.shadowRoot.querySelector('#check_wrapper').

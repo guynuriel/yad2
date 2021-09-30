@@ -1,5 +1,7 @@
 const search_asset_type_all = document.querySelector("#search_asset_type_all");
 
+
+
 search_asset_type_all.addEventListener('click', function() {
     if($(this)[0].isChecked){
 
@@ -112,6 +114,152 @@ $(document).ready(function () {
     }
 })
 
+
+
+let checkBoxes = Object.values($('custom-checkbox[name="search_asset_type\\[\\]"]'));
+let loop = 0
+checkBoxes.forEach((box) => {
+    if (loop > 23) {
+        return;
+    }
+    loop++;
+    box.addEventListener('click', checks_counter);
+});
+    
+function checks_counter() {
+    let btn = document.getElementById("asset-type-btn");
+    let dd1 = document.getElementById("asset_type_checks1");
+    let dd2 = document.getElementById("asset_type_checks2");
+    let dd3 = document.getElementById("asset_type_checks3");
+    let loop = 1
+    let checks = 0;
+    let arr1 = [];
+    let arr2 = [];
+    let arr3 = [];
+    let checks1 = 0;
+    let checks2 = 0;
+    let checks3 = 0;
+    checkBoxes.forEach((e) => {
+        if (loop > 20 ) {
+            return;
+        }
+        let val = e.getAttribute('value');
+        let next = false;
+        switch (val) {
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+                next = true;
+                break;
+            default:
+                break;
+        }
+        
+        if (!next) {
+            
+            if (loop <= 9) {
+                arr1.push(e.isChecked)
+                if (e.isChecked) {
+                    checks1++;
+                }
+            }
+            if (loop > 9 && loop < 14) {
+                arr2.push(e.isChecked)
+                if (e.isChecked) {
+                    checks2++;
+                }
+            }
+            if (loop >= 14 && loop <= 20) {
+                arr3.push(e.isChecked)
+                if (e.isChecked) {
+                    checks3++;
+                }
+            }
+
+            loop++;
+            if (e.isChecked) {
+                checks++
+            }
+        }
+        
+    })
+    
+
+    if (checks > 0) {
+        btn.innerHTML = checks + ' סוגי נכסים'
+    } else {
+       btn.innerHTML  = "בחרו סוגי נכס"
+    }
+    
+    if (checks1 > 0) {
+        dd1.innerHTML = 'נבחרו '+ checks1 +' סוגים'
+    } else {
+        dd1.innerHTML = ''
+    }
+    if (checks2 > 0) {
+        dd2.innerHTML = 'נבחרו '+ checks2 +' סוגים'
+    } else {
+        dd2.innerHTML = ''
+    }
+    if (checks3 > 0) {
+        dd3.innerHTML = 'נבחרו '+ checks3 +' סוגים'
+    } else {
+        dd3.innerHTML = ''
+    }
+
+    if (search_asset_type_all.isChecked) {
+        if (checks > 0 && checks < 20)
+            search_asset_type_all.showMinus();
+    }
+    else {
+        search_asset_type_all.showV();
+    }
+
+    
+    if (search_asset_type1.isChecked) {
+        if (checkingChecks(arr1, 9)) {
+            search_asset_type1.showMinus()
+        } else {
+            search_asset_type1.showV()
+        }
+    }
+    if (search_asset_type2.isChecked) {
+        if (checkingChecks(arr2, 4)) {
+            search_asset_type2.showMinus()
+        } else {
+            search_asset_type2.showV()
+        }
+    }
+    if (search_asset_type3.isChecked) {
+        if (checkingChecks(arr3, 7)) {
+            search_asset_type3.showMinus()
+        } else {
+            search_asset_type3.showV()
+        }
+    }
+        
+    
+}
+
+function checkingChecks(arr, length) {
+    
+    let count = 0;
+
+    arr.forEach(e => {
+        if (e) {
+            count++;
+        }
+    });
+
+
+    if (count < length && count > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
 
 
 $('.search_btn_dd').click(function (e) {

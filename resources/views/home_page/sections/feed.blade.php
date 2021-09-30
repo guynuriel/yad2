@@ -56,7 +56,7 @@
                 </div>
 
                 <div class=" text-left">
-                    {{ $ad->price }} ₪
+                    {{ $ad->price ? $ad->price.' ₪' : 'לא צויין מחיר' }}
                 </div>
 
                 <div class="text-left f13 color2 update_at">
@@ -130,7 +130,7 @@
                 </div>
                 <div class="left-col text-left p-2">
                     <div class="mb-4">
-                        <p class="mb-0">{{ $ad->price }} ₪</p>
+                        <p class="mb-0">{{ $ad->price ? $ad->price.' ₪' : 'לא צויין מחיר' }}</p>
                         <p class="color2">עודכן היום</p>
                     </div>
                     <div class="contact-seller-container">
@@ -277,7 +277,7 @@
                 </div>
                 <div style="width: calc(100% - 200px);">
                     <div>
-                        <p class="mb-0 mt-3">{{ $ad->price }} ₪</p>
+                        <p class="mb-0 mt-3">{{ $ad->price ? $ad->price.' ₪' : 'לא צויין מחיר' }}</p>
                         <span class="asset_address f16">
                             {{ $ad->address_name }}
                             {{ $ad->address_num }}
